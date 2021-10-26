@@ -27,7 +27,7 @@ footer:
   height: 0.45in
   recto:
     right:
-      content: '{section-or-chapter-title} | {page-number}'
+      content: '{section-or-chapter-title} | {page-number} of {page-count}'
   verso:
     left:
-      content: '{page-number} | {chapter-title}'
+      content: '{page-number} of {page-count} | {section-or-chapter-title}'

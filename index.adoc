@@ -3,13 +3,16 @@
 //
 // ====================================
 
-// variables for theme
-:organization: NOBO
-
 // configure EN settings for asciidoc
 include::src/config.adoc[]
 
-= image:arc42-logo.png[arc42] Template
+// parameters for document
+include::env.adoc[]
+
+= {platform-version} {doc-title} : Platform Revision:{revnumber}
+{product} Project Revision:{product-version}
+Build on {revdate}
+
 // toc-title definition MUST follow document title without blank line!
 :toc-title: Table of Contents
 
