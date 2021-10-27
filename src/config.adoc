@@ -1,9 +1,16 @@
 // asciidoc settings for EN (English)
 // ==================================
-:toc-title: table of contents
 
 // enable table-of-contents
 :toc:
 
 // where are images located?
 :imagesdir: ./images
+
+ifdef::backend-pdf[]
+:pdf-theme: chronicles-theme
+:pdf-themesdir: theme
+:title-logo-image: image:logo.png[pdfwidth=4.25in,align=center]
+:source-highlighter: rouge
+:rouge-style: github
+endif::[]
