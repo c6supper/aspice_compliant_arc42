@@ -79,8 +79,6 @@ _<diagram + explanation>_
 
 _<diagram + explanation>_
 
-...
-
 ==== _<Infrastructure Element n>_
 
 _<diagram + explanation>_

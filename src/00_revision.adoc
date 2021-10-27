@@ -1,8 +1,4 @@
-
-[[section-revision-history]]
-
-== Revision History
-
+:numbered!:
 [width="100%",cols="1,2,5,2",options="header"]
 .List of Technical Constraints
 .Revision History

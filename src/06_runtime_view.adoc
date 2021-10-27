@@ -39,6 +39,4 @@ building block instances depicted in this diagram.>_
 
 === <Runtime Scenario 2>
 
-=== ...
-
 === <Runtime Scenario n>

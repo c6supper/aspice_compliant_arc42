@@ -57,15 +57,15 @@ In addition {hardware-version} {hardware-name} Software Platform could also be p
 // .Form
 // A table with quality goals and concrete scenarios, ordered by priorities
 // ****
-[cols="0,1,3" options="header"]
+[cols="1,3" options="header"]
 .Quality Goals
 |===
-| Nr. | Quality                        | Motivation
-| 1   | Understandability              | The functional requirements are simple enough to allow a simple, understandable solution that allows focus on learning about new Java 8 features, Spring Boot and AngularJS.
-| 2   | Efficiency                     | Collecting milage data should be a no brainer: Reading the milage from an odometer and entering it.
-| 3   | Interoperability               | The application should provide a simple API that allows access to new clients.
-| 4   | Attractiveness                 | Collected milages should be presented in easy to grasp charts.
-| 5   | Testability                    | The architecture should allow easy testing of all main building blocks.
+| Quality                        | Motivation
+| Understandability              | The functional requirements are simple enough to allow .
+| Efficiency                     | Collecting milage data should be a no brainer: Reading the milage from an odometer and entering it.
+| Interoperability               | The application should provide a simple API that allows access to new clients.
+| Attractiveness                 | Collected milages should be presented in easy to grasp charts.
+| Testability                    | The architecture should allow easy testing of all main building blocks.
 |===
 
 === Stakeholders
