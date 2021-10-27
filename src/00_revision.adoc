@@ -20,7 +20,7 @@
 | 0.2
 | 2020/10/17
 | 1)	Add CPU/Memory estimation +
-2)	Add sulution of animation +
+2)	Add solution of animation +
 3)	Update display configuration
 | HuiBin Li
 

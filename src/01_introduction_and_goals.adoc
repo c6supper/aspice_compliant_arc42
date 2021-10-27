@@ -1,49 +1,72 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-[role="arc42help"]
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+// [role="arc42help"]
+// ****
+// Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+// * underlying business goals, essential features and functional requirements for the system
+// * quality goals for the architecture
+// * relevant stakeholders and their expectations
+// referring to https://faq.arc42.org/questions/C-1-2/
+// ****
 
 === Requirements Overview
 
-[role="arc42help"]
-****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+// [role="arc42help"]
+// ****
+// .Contents
+// Short description of the functional requirements, driving forces, extract (or abstract)
+// of requirements. Link to (hopefully existing) requirements documents
+// (with version number and information where to find it).
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+// .Motivation
+// From the point of view of the end users a system is created or modified to
+// improve support of a business activity and/or improve the quality.
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
+// .Form
+// Short textual description, probably in tabular use-case format.
+// If requirements documents exist this overview should refer to these documents.
 
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
-****
+// Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+// ****
+
+.What is {hardware-version} {hardware-name} Software Platform?
+A vehicle cockpit domain controller software platform, which is compatible with {customer}'s {customer-product} architecture.
+In addition {hardware-version} {hardware-name} Software Platform could also be ported to other car brands' architectures.
+
+.Essential Features
+* https://en.wikipedia.org/wiki/Electronic_instrument_cluster[Electronic instrument cluster]
+* https://en.wikipedia.org/wiki/Head-up_display[Head-up display]
+* https://en.wikipedia.org/wiki/Backup_camera[Rear-view camera]
+* https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning[Heating, ventilation, and air conditioning]
+* MCU application layer software to manage peripherals like CAN bus interface.
+* Essential software components like drivers and middlewares for https://en.wikipedia.org/wiki/QNX[QNX] and https://source.android.com/devices/automotive/start/what_automotive[Android Automotive]
 
 === Quality Goals
 
-[role="arc42help"]
-****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+// [role="arc42help"]
+// ****
+// .Contents
+// The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+// .Motivation
+// You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
+// If you as an architect do not know how the quality of your work will be judged …
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
-****
+// .Form
+// A table with quality goals and concrete scenarios, ordered by priorities
+// ****
+[cols="0,1,3" options="header"]
+.Quality Goals
+|===
+| Nr. | Quality                        | Motivation
+| 1   | Understandability              | The functional requirements are simple enough to allow a simple, understandable solution that allows focus on learning about new Java 8 features, Spring Boot and AngularJS.
+| 2   | Efficiency                     | Collecting milage data should be a no brainer: Reading the milage from an odometer and entering it.
+| 3   | Interoperability               | The application should provide a simple API that allows access to new clients.
+| 4   | Attractiveness                 | Collected milages should be presented in easy to grasp charts.
+| 5   | Testability                    | The architecture should allow easy testing of all main building blocks.
+|===
 
 === Stakeholders
 
