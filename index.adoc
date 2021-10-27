@@ -5,7 +5,7 @@ include::env.adoc[]
 
 = {hardware-version} {doc-title}
 Author {doc-author}
-Platform({platform-version}) {product}({product-version}) Build on {docdate}
+Platform({platform-version}) {product}({product-version}) Built on {docdate}
 :toc-title: Table of Contents
 :doctype: book
 :icons: font
