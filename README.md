@@ -1,5 +1,5 @@
 ## Why
-1. **How to maintain platform doc and project specific doc?**
+1. **Driven by ASPICE, configurable traceable, constant etc.**
 2. **Doc as Code https://www.writethedocs.org/guide/docs-as-code/**
 3. **AsciiDoc https://asciidoctor.org/docs/what-is-asciidoc/**
 4. **ARC42 https://arc42.org/why**

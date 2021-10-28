@@ -1,0 +1,16 @@
+{
+    "spellchecker.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext",
+        "asciidoc"
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,    
+        "**/node_modules": true, 
+        ".bundle": true,
+        "node_modules": true,
+        "build": true
+    }
+}

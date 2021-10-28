@@ -8,14 +8,13 @@
 // * underlying business goals, essential features and functional requirements for the system
 // * quality goals for the architecture
 // * relevant stakeholders and their expectations
-// referring to https://faq.arc42.org/questions/C-1-2/
 // ****
 
 [quote, Global and China Automotive Domain Control Unit (DCU) Industry Report 2021]
 ____
 The EEA upgrade will be the focus in the next 2-3 years, which will accelerate the introduction of domain controllers. The automotive EEA upgrade is mainly reflected in three aspects: software architecture, hardware architecture, and communication architecture. Software architecture will gradually realize hierarchical decoupling, hardware will develop from distributed style to Domain controller/centralized style, and automotive network backbone will develop from LIN/CAN bus to Ethernet.
 ____
-
+The {target-project} is a foundation software component which mainly focus on the cockpit domain controller's infrastructure layer, working together with {hardware-version} {hardware-name} hardware to deliver a solid platform to automotive OEMs to meet the explosive software demanding driven by the automotive market.
 
 === Requirements Overview
 
@@ -37,7 +36,7 @@ ____
 // Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 // ****
 
-.What is {hardware-version} {hardware-name} Software Platform?
+.What is {target-project}?
 A vehicle cockpit domain controller software platform, which is compatible with {customer}'s {customer-product} architecture.
 In addition {hardware-version} {hardware-name} Software Platform could also be ported to other car brands' architectures.
 
@@ -46,8 +45,16 @@ In addition {hardware-version} {hardware-name} Software Platform could also be p
 * https://en.wikipedia.org/wiki/Head-up_display[Head-up display]
 * https://en.wikipedia.org/wiki/Backup_camera[Rear-view camera]
 * https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning[Heating, ventilation, and air conditioning]
+* https://www.linkedin.com/pulse/what-fota-automotive-industry-bogdan-herciu[FOTA]
 * MCU application layer software to manage peripherals like CAN bus interface.
 * Essential software components like drivers and middlewares for https://en.wikipedia.org/wiki/QNX[QNX] and https://source.android.com/devices/automotive/start/what_automotive[Android Automotive]
+* #TODO: need to pick up features, especially for the items we want to present in the ASPICE#
+
+.Platform Full Feature Lists
+* http://10.255.35.15/svn/B03/03.RequirementsDevelopLibrary/03.RequirementsAnalysis/V3.5/00.FeatureList[Latest]
+
+.{product} Specific Feature Lists
+* #TODO: project specific features should be embedded to this document, currently use B03 as an example#
 
 === Quality Goals
 
@@ -63,42 +70,48 @@ In addition {hardware-version} {hardware-name} Software Platform could also be p
 // .Form
 // A table with quality goals and concrete scenarios, ordered by priorities
 // ****
+// referring to https://faq.arc42.org/questions/C-1-2/ and https://arnon.me/2010/05/utility-trees-hatching-quality-attributes/
+
 [cols="1,3" options="header"]
-.Quality Goals
+.https://en.wikipedia.org/wiki/Software_quality[Quality Goals]
 |===
-| Quality                        | Motivation
-| Understandability              | The functional requirements are simple enough to allow .
-| Efficiency                     | Collecting milage data should be a no brainer: Reading the milage from an odometer and entering it.
-| Interoperability               | The application should provide a simple API that allows access to new clients.
-| Attractiveness                 | Collected milages should be presented in easy to grasp charts.
-| Testability                    | The architecture should allow easy testing of all main building blocks.
+| Quality                           | Motivation
+| Safety                            | https://en.wikipedia.org/wiki/ISO_26262[Minimize the occurrence and consequences of traffic collisions]
+| Reliability                       | As the automotive software growth, it become a key factor to affect the vehicle reliability
+| Performance                       | https://en.wikipedia.org/wiki/Performance_engineering#Performance_engineering_objectives[Performance is an essential quality attribute of every software system]
+| Security                          | https://en.wikipedia.org/wiki/Automotive_security['Security' is one of the biggest concerns with connected cars]
+| Maintainability                   | https://www.oreilly.com/content/what-is-maintainability/[Cost Cutting, time-to-market]
 |===
 
 === Stakeholders
 
 [role="arc42help"]
-****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
+// ****
+// .Contents
+// Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
 
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
+// * should know the architecture
+// * have to be convinced of the architecture
+// * have to work with the architecture or with code
+// * need the documentation of the architecture for their work
+// * have to come up with decisions about the system or its development
 
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
+// .Motivation
+// You should know all parties involved in development of the system or affected by the system.
+// Otherwise, you may get nasty surprises later in the development process.
+// These stakeholders determine the extent and the level of detail of your work and its results.
 
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
-****
+// .Form
+// Table with role names, person names, and their expectations with respect to the architecture and its documentation.
+// ****
 
-[options="header",cols="1,2,2"]
+[options="header",cols="1,2"]
 |===
-|Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Role/Name           | Goals/Boundaries
+| PO/PM               | High-level overview of the software architecture and solutions, source for decision making
+| System Architects   | Boundary conditions and quality objectives, overarching topics and design decisions
+| Developers          | Overview of the software modules and API to be implemented
+| Testers             | Overview of the software modules
+| QA                  | Process and Quality assurance
 |===
+
