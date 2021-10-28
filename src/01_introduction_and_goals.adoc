@@ -11,6 +11,12 @@
 // referring to https://faq.arc42.org/questions/C-1-2/
 // ****
 
+[quote, Global and China Automotive Domain Control Unit (DCU) Industry Report 2021]
+____
+The EEA upgrade will be the focus in the next 2-3 years, which will accelerate the introduction of domain controllers. The automotive EEA upgrade is mainly reflected in three aspects: software architecture, hardware architecture, and communication architecture. Software architecture will gradually realize hierarchical decoupling, hardware will develop from distributed style to Domain controller/centralized style, and automotive network backbone will develop from LIN/CAN bus to Ethernet.
+____
+
+
 === Requirements Overview
 
 // [role="arc42help"]

@@ -5,7 +5,7 @@
 :imagesdir: ./images
 
 ifdef::backend-pdf[]
-:pdf-theme: chronicles-theme
+:pdf-theme: chronicles
 :pdf-themesdir: theme
 :title-logo-image: image:logo.png[pdfwidth=4.25in,align=center]
 :source-highlighter: rouge

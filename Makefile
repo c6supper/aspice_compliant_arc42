@@ -9,10 +9,10 @@ html: $(htmls)
 
 # Call asciidoctor to generate $@ from $^
 %.pdf: %.adoc
-	asciidoctor-pdf $^ $(options) -o build/pdf/$@
+	bundler exec asciidoctor-pdf $^ $(options) -o build/pdf/$@
 
 %.html: %.adoc
-	asciidoctor $^ -o build/html/$@
+	bundler exec asciidoctor $^ -o build/html/$@
 	@cp -rf images build/html/
 
 clean:
