@@ -11,7 +11,7 @@
 4. **Theming guide refer to https://github.com/asciidoctor/asciidoctor-pdf/blob/main/docs/theming-guide.adoc#attribute-references**
 
 ## Setup 
-1. **Install ruby (> 2.5), ruby-bundler**
+1. **Install ruby (> 2.5), ruby-bundler, pandoc**
 2. **Run bundle config set --local path .bundle/gems && bundle**
 
 ## Build 

@@ -46,7 +46,6 @@ In addition {hardware-version} {hardware-name} Software Platform could also be p
 * https://en.wikipedia.org/wiki/Backup_camera[Rear-view camera]
 * https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning[Heating, ventilation, and air conditioning]
 * https://www.linkedin.com/pulse/what-fota-automotive-industry-bogdan-herciu[FOTA]
-* MCU application layer software to manage peripherals like CAN bus interface.
 * Essential software components like drivers and middlewares for https://en.wikipedia.org/wiki/QNX[QNX] and https://source.android.com/devices/automotive/start/what_automotive[Android Automotive]
 * #TODO: need to pick up features, especially for the items we want to present in the ASPICE#
 
@@ -72,7 +71,7 @@ In addition {hardware-version} {hardware-name} Software Platform could also be p
 // ****
 // referring to https://faq.arc42.org/questions/C-1-2/ and https://arnon.me/2010/05/utility-trees-hatching-quality-attributes/
 
-.https://en.wikipedia.org/wiki/Software_quality[Quality Goals]
+.https://en.wikipedia.org/wiki/Software_quality[List of Quality Goals]
 [cols="1,3" options="header"]
 |===
 | Quality                           | Motivation
@@ -104,7 +103,7 @@ In addition {hardware-version} {hardware-name} Software Platform could also be p
 // .Form
 // Table with role names, person names, and their expectations with respect to the architecture and its documentation.
 // ****
-.[Stakeholders]
+.List of Stakeholders
 [options="header",cols="1,2"]
 |===
 | Role/Name           | Goals/Boundaries

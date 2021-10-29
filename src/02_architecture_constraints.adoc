@@ -20,19 +20,20 @@
 The few constraints on this project are reflected in the final solution. This section shows them and if applicable, their motivation.
 
 === Technical Constraints
-
 .List of Technical Constraints
 [options="header", cols="1,2,4"]
 |===
 |     | Constraint                    | Background and / or motivation
-   3+e| Software and programming constraints
-| TC1 | Implementation in Java        | The application should be part of a Java 8 and Spring Boot show case. The interface (i.e. the api) should be language and framework agnostic, however. It should be possible that clients can be implemented using various frameworks and languages..
-| TC2 | Third party software must be available under an compatible open source license and installable via a package manager | The interested developer or architect should be able to check out the sources, compile and run the application without problems compiling or installing dependencies. All external dependencies should be available via the package manager of the operation system or at least through an installer.
+   3+e| Design Constraints
+| TC1 | http://10.52.245.125:8090/pages/viewpage.action?pageId=34897940[NAT_C0202_05_WI_02] | Software HLD Guideline
+| TC1 | http://10.52.245.125:8090/pages/viewpage.action?pageId=30645376[NAT_C0202_05_WI_03] | Software Design Tool Guideline
+| TC2 | http://10.52.245.125:8090/pages/viewpage.action?pageId=33851268[NAT_C0202_05_WI_04] | FEMA Guideline
    3+e| Operating System Constraints
-| TC3 | OS independent development    | The application should be compilable on all 3 mayor operation systems (Mac OS X, Linux and Windows)
-| TC4 | Deployable to a Linux server  | The application should be deployable through standard means on a Linux based server
+| TC4 | Deployable to a QNX + Android environment  | The platform should be deployable through a specific QNX and Android environment which is customized for {hardware-name}
    3+e| Hardware Constraints
-| TC5 | Memory friendly               | Memory can be limited (due to availability on a shared host or deployment to cloud based host). If deployed to a cloud based solution, every megabyte of memory costs.
+| TC5 | CPU friendly | CPU can be limited (Qualcomm SA8155P/SA6155)
+| TC6 | Memory friendly | Memory can be limited, 12G #TODO: 具体分配方案BSP无法给出#
+| TC7 | Storage friendly | link:pass:[http://10.52.245.131:8080/svn/V3.5/50_Development/5020_Software/502010_Software_Architecture/[3.5]_SwAD][Partition table]
 |===
 
 
