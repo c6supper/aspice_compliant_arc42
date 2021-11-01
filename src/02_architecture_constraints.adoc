@@ -36,21 +36,7 @@ The few constraints on this project are reflected in the final solution. This se
 | TC7 | Storage friendly | link:pass:[http://10.52.245.131:8080/svn/V3.5/50_Development/5020_Software/502010_Software_Architecture/[3.5]_SwAD][Partition table]
 |===
 
-
-=== Organizational Constraints
-
-.List of Organizational Constraints
-[options="header", cols="1,2,4"]
-|===
-|     | Constraint                                     | Background and / or motivation
-| OC1 | Team                                           | Michael Simons
-| OC2 | Time schedule                                  | Start in early 2014 with Spring Boot beta based prototypes running on Java 8 early access builds, first "release" version March 2014 together with the initial release of Java 8. Upgrade to a final Spring Boot release when they are available.
-| OC3 | IDE independent project setup                  | No need to continue the editor and IDE wars. The project must be compilable on the command line via standard build tools. Due to _OC2_ there is only one IDE supporting Java 8 features out of the box: _NetBeans 8_ beta and release candidates.
-| OC4 | Configuration and version control / management | Private git repository with a complete commit history and a public master branch pushed to GitHub and linked a project blog.
-| OC5 | Testing                                        | Use JUnit to prove functional correctness and integration tests and JaCoCo to ensure a high test coverage (at least 90%).
-| OC6 | Published under an Open Source license         | The source, including documentation, should be published as Open Source under the Apache 2 License.
-|===
-
+include::{docdir}/src/02_organizational_constraints.adoc[]
 
 === Conventions
 
