@@ -1,30 +1,38 @@
-LUN,label,size_in_kb,type,bootable,readonly,filename,sparse,
+LUN,label,size_in_kb,type,bootable,readonly,filename,sparse
 LUN 0,ssd,8,2C86E742-745E-4FDD-BFD8-B6A7AC638772,false,false,,
 LUN 0,misc,1024,04600328-0CC3-47B8-8EF1-B192C39E3E1F,false,false,,
 LUN 0,keystore,512,DE7D4029-0F5B-41C8-AE7E-F6C023A02B33,false,false,,
 LUN 0,frp,512,91B72D4D-71E0-4CBF-9B8E-236381CFF17A,false,false,,
 LUN 0,boot_a,65536,20117F86-E985-4357-B9EE-374BC1D8487D,false,false,boot_la.img,
-LUN 0,system_a,3145728,3A065A51-80C6-4439-8602-79437023632A,false,false,system_la.img,false,
-LUN 0,system_b,3145728,3A065A51-80C6-4439-8602-79437023632A,false,false,system_la.img,false,
-LUN 0,system_recovery,3145728,15749816-fc4a-42cb-ba42-1e8d26806d22,false,false,system_la.img,false,
-LUN 0,persist,32768,6C95E238-E343-4BA8-B489-8681ED22AD0B,false,false,persist.img.sparse,
+LUN 0,system_a,2097152,3A065A51-80C6-4439-8602-79437023632A,false,false,system_la.img,false
+LUN 0,system_b,2097152,3A065A51-80C6-4439-8602-79437023632A,false,false,system_la.img,false
+LUN 0,persist,131072,6C95E238-E343-4BA8-B489-8681ED22AD0B,false,false,persist_qnx.img,false
+LUN 0,userdata,204800,1B81E7E6-F50D-419B-A739-2AEEF8DA3335,false,false,,true
 LUN 0,firmware,97280,B9717070-687C-4031-8FB2-DE225BA9E7B3,false,true,,
-LUN 0,userdata,4048576,1B81E7E6-F50D-419B-A739-2AEEF8DA3335,false,false,,true,
 LUN 0,ifs2_a,262144,133e4a08-4def-11e6-beb8-9e71128cae77,false,true,ifs2_la.img,
 LUN 0,ifs2_b,262144,133e4a08-4def-11e6-beb8-9e71128cae77,false,true,ifs2_la.img,
-LUN 0,ifs2_recovery,262144,2fd31ba9-afbd-4667-8356-4262fb4be317,false,true,ifs2_la.img,
-LUN 0,hyp_a,7168,E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A,false,false,mifs_hyp_la.img,
-LUN 0,hyp_b,7168,E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A,false,false,mifs_hyp_la.img,
-LUN 0,hyp_recovery,7168,3D3E3AD2-8FF3-4975-A7E7-0E8A10B69F0D,false,false,mifs_hyp_la.img,
-LUN 0,la_system_a,3145728,9AD960EF-D2F7-48E3-9A9C-5970FE7D1BC6,false,false,system.img,true,
-LUN 0,la_persist,32768,ac15448d-5948-4d1b-9309-f737870383d5,false,false,persist.img,false,
-LUN 0,la_vendor_a,1048576,97D7B011-54DA-4835-B3C4-917AD6E73D74,false,true,vendor.img,true,
+LUN 0,ifs2_recovery,512000,2fd31ba9-afbd-4667-8356-4262fb4be317,false,true,minios_la.img,
+LUN 0,android_boot_a,65536,E8F2FCB6-4D53-4127-9281-005A8C9E9ADB,false,false,android_image.img,false
+LUN 0,android_boot_b,65536,E8F2FCB6-4D53-4127-9281-005A8C9E9ADB,false,false,android_image.img,false
+LUN 0,ota_update,5242880,E6F5765D-A5F5-43C7-946F-2AF1F523A3A8,false,false,,false
+LUN 0,la_system_a,4194304,9AD960EF-D2F7-48E3-9A9C-5970FE7D1BC6,false,false,system.img,true
+LUN 0,la_persist,32768,ac15448d-5948-4d1b-9309-f737870383d5,false,false,persist.img,false
+LUN 0,la_vendor_a,1572864,97D7B011-54DA-4835-B3C4-917AD6E73D74,false,true,vendor.img,true
 LUN 0,la_firmware_a,97280,76C92C11-64C7-4000-AFD8-41008365A207,false,true,,
-LUN 0,la_system_b,3145728,9AD960EF-D2F7-48E3-9A9C-5970FE7D1BC6,false,false,system.img,true,
-LUN 0,la_vendor_b,1048576,97D7B011-54DA-4835-B3C4-917AD6E73D74,false,true,vendor.img,true,
+LUN 0,la_system_b,4194304,9AD960EF-D2F7-48E3-9A9C-5970FE7D1BC6,false,false,system.img,true
+LUN 0,la_vendor_b,1572864,97D7B011-54DA-4835-B3C4-917AD6E73D74,false,true,vendor.img,true
 LUN 0,la_firmware_b,97280,76C92C11-64C7-4000-AFD8-41008365A207,false,true,,
 LUN 0,la_misc,1024,82ACC91F-357C-4A68-9C8F-689E1B1A23A1,false,false,,
-LUN 0,la_userdata,12582912,6E6D4ADD-DD73-4D05-AE54-2CD16925DD65,false,false,userdata.img,true,
+LUN 0,navi_buffer,18874368,3c727a0a-de2d-48ae-8e3d-49459228e8a4,false,false,navi_buffer.img,true
+LUN 0,log_data,1048576,1ecda445-d041-45a7-91ab-a7ed4f2c14a9,false,false,log_data.img,true
+LUN 0,vr_tts,2097152,004ecc9a-8fce-4012-8473-805dbad35801,false,false,vr.img,true
+LUN 0,encryption,8192,8d48880e-f743-4e1b-89a6-4cf60a51b541,false,false,encryption.img,true
+LUN 0,appcfg,512000,980e238d-109d-431c-af35-40a0adb3f349,false,false,appcfg.img,true
+LUN 0,bvims,1048576,9505014c2-75a4-43f9-9542-99b9532453ca,false,false,bvims.img,false
+LUN 0,fw_cache,20480,0ea6b7b3-da66-4621-9507-44fc418d196d,false,false,,false
+LUN 0,game_data,1048576,e503e5a8-1e3e-4374-a537-b9c6030f7602,false,false,gamedata.img,true
+LUN 0,la_userdata,11010048,6E6D4ADD-DD73-4D05-AE54-2CD16925DD65,false,false,userdata.img,true
+LUN 0,qnx_share,2711552,f000d6ad-435a-4526-a28f-c5bc362c7058,false,false,,false
 LUN 1,xbl_a,3584,DEA0BA2C-CBDD-4805-B4F9-F428251C3E98,false,true,xbl.elf,
 LUN 1,xbl_config_a,128,5A325AE4-4276-B66D-0ADD-3494DF27706A,false,false,xbl_config.elf,
 LUN 1,xbl_config_recovery,128,A4CDBB5A-5A73-436E-B129-689EC01DBFE3,false,false,xbl_config.elf,
@@ -33,14 +41,16 @@ LUN 2,xbl_b,3584,DEA0BA2C-CBDD-4805-B4F9-F428251C3E98,false,true,xbl.elf,
 LUN 2,xbl_config_b,128,5A325AE4-4276-B66D-0ADD-3494DF27706A,false,false,xbl_config.elf,
 LUN 2,xbl_config_recovery,128,A4CDBB5A-5A73-436E-B129-689EC01DBFE3,false,false,xbl_config.elf,
 LUN 2,last_parti,0,00000000-0000-0000-0000-000000000000,false,true,,
-LUN3,ALIGN_TO_128K_1,104,FDE1604B-D68B-4BD4-973D-962AE7A1ED88,false,true,
-LUN3,cdt,128,A19F205F-CCD8-4B6D-8F1E-2D9BC24CFFB1,false,true,,
-LUN3,ddr,1024,20A0C19C-286A-42FA-9CE7-F64C3226A794,false,true,
+LUN3,ALIGN_TO_128K_1,104,FDE1604B-D68B-4BD4-973D-962AE7A1ED88,false,true,,
+LUN3,cdt,128,A19F205F-CCD8-4B6D-8F1E-2D9BC24CFFB1,false,true,cdt.bin,
+LUN3,ddr,1024,20A0C19C-286A-42FA-9CE7-F64C3226A794,false,true,,
 LUN3,last_parti,0,00000000-0000-0000-0000-000000000000,false,true,,
 LUN 4,aop_a,512,D69E90A5-4CAB-0071-F6DF-AB977F141A7F,false,true,aop.mbn,
 LUN 4,aop_recovery,512,B8B27C4C-4B5B-8AB2-502F-A792B590A896,false,true,aop.mbn,
 LUN 4,tz_a,4096,A053AA7F-40B8-4B1C-BA08-2F68AC71A4F4,false,true,tz.mbn,
 LUN 4,tz_recovery,4096,C832EA16-8B0D-4398-A67B-EBB30EF98E7E,false,true,tz.mbn,
+LUN 4,hyp_a,7168,E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A,false,false,mifs_hyp_la.img,
+LUN 4,hyp_recovery,7168,3D3E3AD2-8FF3-4975-A7E7-0E8A10B69F0D,false,false,mifs_hyp_minios_la.img,
 LUN 4,modem_a,174080,EBD0A0A2-B9E5-4433-87C0-68B6B72699C7,false,true,NON-HLOS.bin,
 LUN 4,bluetooth_a,2048,6cb747f1-c2ef-4092-add0-ca39f79c7af4,false,true,BTFM.bin,
 LUN 4,mdtpsecapp_a,4096,EA02D680-8712-4552-A3BE-E6087829C1E6,false,true,,
@@ -58,6 +68,7 @@ LUN 4,dtbo_a,24576,24d0d418-d31d-4d8d-ac2c-4d4305188450,false,false,,
 LUN 4,uefisecapp_a,2048,BE8A7E08-1B7A-4CAE-993A-D5B7FB55B3C2,false,false,uefi_sec.mbn,
 LUN 4,aop_b,512,D69E90A5-4CAB-0071-F6DF-AB977F141A7F,false,true,aop.mbn,
 LUN 4,tz_b,4096,A053AA7F-40B8-4B1C-BA08-2F68AC71A4F4,false,true,tz.mbn,
+LUN 4,hyp_b,7168,E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A,false,false,mifs_hyp_la.img,
 LUN 4,modem_b,174080,EBD0A0A2-B9E5-4433-87C0-68B6B72699C7,false,true,NON-HLOS.bin,
 LUN 4,bluetooth_b,2048,6cb747f1-c2ef-4092-add0-ca39f79c7af4,false,true,BTFM.bin,
 LUN 4,mdtpsecapp_b,4096,EA02D680-8712-4552-A3BE-E6087829C1E6,false,true,,
@@ -80,22 +91,18 @@ LUN 4,apdp,256,E6E98DA2-E22A-4D12-AB33-169E7DEAA507,false, false,,
 LUN 4,msadp,256,ED9E8101-05FA-46B7-82AA-8D58770D200B,false,false,,
 LUN 4,spunvm,8192,e42e2b4c-33b0-429b-b1ef-d341c547022c,false,false,,
 LUN 4,splash,33424,AD99F201-DC71-4E30-9630-E19EEF553D1B,false,false,,
-LUN 4,limits,4,10A0C19C-516A-5444-5CE3-664C3226A794,false,true,
-LUN 4,toolsfv,1024,97745ABA-135A-44C3-9ADC-05616173C24C,false,true,
+LUN 4,limits,4,10A0C19C-516A-5444-5CE3-664C3226A794,false,true,,
+LUN 4,toolsfv,1024,97745ABA-135A-44C3-9ADC-05616173C24C,false,true,,
 LUN 4,logfs,8192,BC0330EB-3410-4951-A617-03898DBE3372,false,false,logfs_ufs_8mb.bin,
 LUN 4,cateloader,2048,AA9A5C4C-4F1F-7D3A-014A-22BD33BF7191,false,false,,
 LUN 4,logdump,65536,5AF80809-AABB-4943-9168-CDFC38742598,false,false,,
 LUN 4,storsec,128,02DB45FE-AD1B-4CB6-AECC-0042C637DEFA,false,true,storsec.mbn,
-LUN 4,multiimgoem,32,E126A436-757E-42D0-8D19-0F362F7A62B8,false,true,multi_image.mbn,
+LUN 4,multiimgoem,32,E126A436-757E-42D0-8D19-0F362F7A62B8,false,true,,
 LUN 4,multiimgqti,32,846C6F05-EB46-4C0A-A1A3-3648EF3F9D0E,false,true,,
 LUN 4,uefivarstore,512,165BD6BC-9250-4AC8-95A7-A93F4A440066,false,true,,
 LUN 4,secdata,28,76cfc7ef-039d-4e2c-b81e-4dd8c2cb2a93,false,true,sec.dat,
-LUN 4,catefv,512,80c23c26-c3f9-4a19-bb38-1e457daceb09,false,true,
-LUN 4,catecontentfv,1024,e12d830b-7f62-4f0b-b48a-8178c5bf3ac1,false,true,
+LUN 4,catefv,512,80c23c26-c3f9-4a19-bb38-1e457daceb09,false,true,,
+LUN 4,catecontentfv,1024,e12d830b-7f62-4f0b-b48a-8178c5bf3ac1,false,true,,
 LUN 4,last_parti,0,00000000-0000-0000-0000-000000000000,false,true,,
-LUN5,ALIGN_TO_128K_2,104,6891a3b7-0ccc-4705-bb53-2673cac193bd,false,true,
-LUN5,modemst1,2048,EBBEADAF-22C9-E33B-8F5D-0E81686A68CB,false,false,,
-LUN5,modemst2,2048,0A288B1F-22C9-E33B-8F5D-0E81686A68CB,false,false,,
-LUN5,fsg,2048,638FF8E2-22C9-E33B-8F5D-0E81686A68CB,false,true,,
-LUN5,fsc,128,57B90A16-22C9-E33B-8F5D-0E81686A68CB,false,false,,
+LUN5,ALIGN_TO_128K_2,104,6891a3b7-0ccc-4705-bb53-2673cac193bd,false,true,,
 LUN5,last_parti,0,00000000-0000-0000-0000-000000000000,false,true,,
