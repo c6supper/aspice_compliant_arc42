@@ -32,11 +32,11 @@ The few constraints on this project are reflected in the final solution. This se
 | TC4 | Deployable to a QNX + Android environment  | The platform should be deployable through a specific QNX and Android environment which is customized for {hardware-name}
    3+e| Hardware Constraints
 | TC5 | CPU friendly | CPU can be limited (Qualcomm SA8155P/SA6155)
-| TC6 | Memory friendly | Memory can be limited, 12G #TODO: 具体分配方案BSP无法给出#
-| TC7 | Storage friendly | link:pass:[http://10.52.245.131:8080/svn/V3.5/50_Development/5020_Software/502010_Software_Architecture/[3.5]_SwAD][Partition table]
+| TC6 | Memory friendly | link:pass:[http://10.52.245.131:8080/svn/V3.5/50_Development/5020_Software/502020_Software_Modules/50202011_BSP/HLD/Hypervisor/V3.5_HLD_Hypervisor.docx][Memory Carveouts]
+| TC7 | Storage friendly | link:pass:[http://10.52.245.131:8080/svn/V3.5/50_Development/5020_Software/502010_Software_Architecture/[3.5]_SwAD][Partition Table]
 |===
 
-include::{docdir}/src/02_organizational_constraints.adoc[]
+include::../../src/02_organizational_constraints.adoc[]
 
 === Conventions
 
