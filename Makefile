@@ -8,13 +8,23 @@ puml_svg := $(puml_src:.puml=.svg)
 puml_png := $(puml_src:.puml=.png)
 options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a platform-path="$(DIR)" -B $(shell pwd)
 
-all: puml html pdf docx 
-puml: $(puml_svg) $(puml_png)
+all: prepare puml html pdf docx 
+puml: prepare $(puml_svg) $(puml_png)
 html: puml $(htmls)
 pdf: puml $(pdfs)
 docx: puml $(docx)
-.PHONY: all pdf html docx clean puml
+.PHONY: all pdf html docx clean puml prepare
 .NOTPARALLEL:
+
+prepare:
+	@mkdir -p build/docx
+	@mkdir -p build/svg
+	@mkdir -p build/png
+	if [ ! -d $(shell pwd)/build/c4-template ]; then \
+        wget -q -O- -c https://github.com/plantuml-stdlib/C4-PlantUML/archive/refs/tags/v2.4.0.tar.gz | \
+		tar -xz -C $(shell pwd)/build/ && \
+		mv $(shell pwd)/build/C4-PlantUML-2.4.0 $(shell pwd)/build/c4-template; \
+    fi
 
 # Call asciidoctor to generate $(@F) from $^
 %.pdf: %.adoc
@@ -24,17 +34,14 @@ docx: puml $(docx)
 	bundler exec asciidoctor --backend html5 -a data-uri $(options) $^ -o build/html/$(@F)
 
 %.docx: %.adoc
-	mkdir -p build/docx
 	bundler exec asciidoctor --backend docbook $(options) -o - $^ \
 	| pandoc --from=docbook --to=docx --output build/docx/$(@F) --highlight-style espresso
 
 %.svg: %.puml
-	@mkdir -p build/svg
-	java -jar $(DIR)/tool/plantuml.jar $^ -tsvg -o "$(shell pwd)/build/svg/"
+	java -jar $(DIR)/tool/plantuml.jar -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" $^ -tsvg -o "$(shell pwd)/build/svg/"
 
 %.png: %.puml
-	@mkdir -p build/png
-	java -jar $(DIR)/tool/plantuml.jar $^ -tpng -o "$(shell pwd)/build/png/"
+	java -jar $(DIR)/tool/plantuml.jar -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"  $^ -tpng -o "$(shell pwd)/build/png/"
 
 clean:
 	@rm -rf build
