@@ -15,39 +15,45 @@
 
 !include FONTAWESOME/users.puml
 
+skinparam wrapWidth auto
+skinparam Backgroundcolor transparent
+skinparam defaultTextAlignment center
 
 LAYOUT_TOP_DOWN()
+LAYOUT_LANDSCAPE()
 ' LAYOUT_AS_SKETCH()
 LAYOUT_WITH_LEGEND()
 
-Person(customer, "Customer", "Vehicle Driver and Passenger", $sprite="users")
+Person(customer, "Customer", "Driver and Passenger", $sprite="users")
 
 System_Boundary(cdc, "Smart Cockpit System") {
   System(hut, "HUT", "Smart Cockpit Domain Controller")
   System_Ext(tbox, "T-Box", "Telematics-Box")
-  System_Ext(etc, "ETC", "Electronic Toll Collection")
   System_Ext(hud, "HUD/AR-HUD", "Heads-up Display")
   System_Ext(whud, "W-HUD", "Windshield Heads-up Display")
+  System_Ext(etc, "ETC", "Electronic Toll Collection")
   System_Ext(display, "IVI/Passenger/Cluser", "Display Screen")
   System_Ext(wifi_display, "RSE", "Rear Display Screen")
 
   Rel(hut, tbox, "Access Internet","SC-CANFD/1GE-T1")
-  Rel(hut, etc, "Control","CAN")
   Rel(hut, hud, "Control","CAN")
   Rel(hut, whud, "Drive/Control","FP DLINK/I2C")
+
+  Rel(hut, etc, "Control","CAN")
   Rel(hut, display, "Drive/Control","FP DLINK/I2C")
   Rel(hut, wifi_display, "Drive/Control","WIFI")
 }
 
 System_Ext(ccu, "CCU", "Central Computing Unit (EE4.0 only)")
 System_Ext(gw, "GW", "Central Computing Unit (EE3.X only)")
+System_Ext(cem, "CEM", "Central Computing Unit (EE4.0 only)")
+System_Ext(viu, "VIU", "Central Computing Unit (EE4.0 only)")
 
-Rel_R(customer, hut, "Interact","Display/Touch/Speech/Camera etc.")
+Rel(customer, cdc, "Interact","Display/Touch/Speech/Camera etc.")
 
-Rel(ccu, hut, "Control","SC-CANFD/1GE-T1")
 Rel(gw, hut, "Control","SC-CANFD/1GE-T1")
-
-
-' Lay_D(customer, hut)
+Rel(ccu, hut, "Control","SC-CANFD/1GE-T1")
+Rel(cem, hut, "Control","SC-CANFD/1GE-T1")
+Rel(viu, hut, "Control","SC-CANFD/1GE-T1")
 
 @enduml

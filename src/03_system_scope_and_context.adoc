@@ -2,46 +2,62 @@
 == System Scope and Context
 
 
-[role="arc42help"]
-****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
+// [role="arc42help"]
+// ****
+// .Contents
+// System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
+// (neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
 
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
+// If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
 
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
+// .Motivation
+// The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
 
-.Form
-Various options:
+// .Form
+// Various options:
 
-* Context diagrams
-* Lists of communication partners and their interfaces.
-****
-
+// * Context diagrams
+// * Lists of communication partners and their interfaces.
+// ****
+This section describes the environment of {target-project}. Who are its users, and with which other systems does it interact with.
 
 === Business Context
+.Business Context of {target-project}
+image::../../build/svg/03_system-context.svg[]
 
-[role="arc42help"]
-****
-.Contents
-Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
-Optionally you can add domain specific formats or communication protocols.
+[options="header", cols="1,4"]
+.Business Context
+|===
+| Neighbor | Description
+| user | documents software with toolchain that generates html. Wants to ensure that
+links within this html are valid.
+| build system |
+| local html files | kbd:[HtmlSC] reads and parses local html files and
+performs sanity checks within those.
+| local image files | kbd:[HtmlSC] checks if linked images exist as (local) files.
+| external web resources | kbd:[HtmlSC] can be configured to optionally check for the existence
+of external web resources. Due to the nature of web systems, this check might need a significant
+amount of time and might yield invalid results due to network and latency issues.
+|===
+// [role="arc42help"]
+// ****
+// .Contents
+// Specification of *all* communication partners (users, IT-systems, ...) with explanations of domain specific inputs and outputs or interfaces.
+// Optionally you can add domain specific formats or communication protocols.
 
-.Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
+// .Motivation
+// All stakeholders should understand which data are exchanged with the environment of the system.
 
-.Form
-All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
+// .Form
+// All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
 
-Alternatively (or additionally) you can use a table.
-The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
-****
+// Alternatively (or additionally) you can use a table.
+// The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
+// ****
 
-**<Diagram or Table>**
+// **<Diagram or Table>**
 
-**<optionally: Explanation of external domain interfaces>**
+// **<optionally: Explanation of external domain interfaces>**
 
 === Technical Context
 
