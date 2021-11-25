@@ -1,45 +1,53 @@
 @startuml
-' RELATIVE_INCLUDE should located at ../../build/c4-template
 !if %variable_exists("RELATIVE_INCLUDE")
-  !include %get_variable_value("RELATIVE_INCLUDE")/C4_Context.puml
+!include %get_variable_value("RELATIVE_INCLUDE")/C4_Context.puml
 !else
-  !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !endif
 
-' LAYOUT_TOP_DOWN()
+!if %variable_exists("RELATIVE_INCLUDE")
+!define DEVICONS %get_variable_value("RELATIVE_INCLUDE")/../plantuml-icon-font-sprites/devicons
+!define FONTAWESOME %get_variable_value("RELATIVE_INCLUDE")/../plantuml-icon-font-sprites/font-awesome-5
+!else
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!endif
+
+!include FONTAWESOME/users.puml
+
+
+LAYOUT_TOP_DOWN()
 ' LAYOUT_AS_SKETCH()
 LAYOUT_WITH_LEGEND()
 
-title System Landscape diagram for Big Bank plc
+Person(customer, "Customer", "Vehicle Driver and Passenger", $sprite="users")
 
-Person(customer, "Personal Banking Customer", "A customer of the bank, with personal bank accounts.")
+System_Boundary(cdc, "Smart Cockpit System") {
+  System(hut, "HUT", "Smart Cockpit Domain Controller")
+  System_Ext(tbox, "T-Box", "Telematics-Box")
+  System_Ext(etc, "ETC", "Electronic Toll Collection")
+  System_Ext(hud, "HUD/AR-HUD", "Heads-up Display")
+  System_Ext(whud, "W-HUD", "Windshield Heads-up Display")
+  System_Ext(display, "IVI/Passenger/Cluser", "Display Screen")
+  System_Ext(wifi_display, "RSE", "Rear Display Screen")
 
-Enterprise_Boundary(c0, "Big Bank plc") {
-    System(banking_system, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
-
-    System_Ext(atm, "ATM", "Allows customers to withdraw cash.")
-    System_Ext(mail_system, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-
-    System_Ext(mainframe, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
-
-    Person_Ext(customer_service, "Customer Service Staff", "Customer service staff within the bank.")
-    Person_Ext(back_office, "Back Office Staff", "Administration and support staff within the bank.")
+  Rel(hut, tbox, "Access Internet","SC-CANFD/1GE-T1")
+  Rel(hut, etc, "Control","CAN")
+  Rel(hut, hud, "Control","CAN")
+  Rel(hut, whud, "Drive/Control","FP DLINK/I2C")
+  Rel(hut, display, "Drive/Control","FP DLINK/I2C")
+  Rel(hut, wifi_display, "Drive/Control","WIFI")
 }
 
-Rel_Neighbor(customer, banking_system, "Uses")
-Rel_R(customer, atm, "Withdraws cash using")
-Rel_Back(customer, mail_system, "Sends e-mails to")
+System_Ext(ccu, "CCU", "Central Computing Unit (EE4.0 only)")
+System_Ext(gw, "GW", "Central Computing Unit (EE3.X only)")
 
-Rel_R(customer, customer_service, "Asks questions to", "Telephone")
+Rel_R(customer, hut, "Interact","Display/Touch/Speech/Camera etc.")
 
-Rel_D(banking_system, mail_system, "Sends e-mail using")
-Rel_R(atm, mainframe, "Uses")
-Rel_R(banking_system, mainframe, "Uses")
-Rel_D(customer_service, mainframe, "Uses")
-Rel_U(back_office, mainframe, "Uses")
+Rel(ccu, hut, "Control","SC-CANFD/1GE-T1")
+Rel(gw, hut, "Control","SC-CANFD/1GE-T1")
 
-Lay_D(atm, banking_system)
 
-Lay_D(atm, customer)
-Lay_U(mail_system, customer)
+' Lay_D(customer, hut)
+
 @enduml
