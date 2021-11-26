@@ -15,7 +15,7 @@
 2. **Run bundle config set --local path .bundle/gems && bundle**
 
 ## Build 
-1. **make**
+1. **make , possible args EE_ARCH=4.0 or 3.x**
 
 ## Build Manually
 1. **bundle exec asciidoctor-pdf -a pdf-theme=./theme/chronicles-theme.yml index.adoc**

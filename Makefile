@@ -9,6 +9,13 @@ puml_png := $(puml_src:.puml=.png)
 options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a platform-path="$(DIR)" -B $(shell pwd)
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
+c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"
+
+ifeq ($(strip $(EE_ARCH)),3.x)
+	c4_options += -DEE_ARCH="3.x"
+else
+	c4_options += -DEE_ARCH="4.0"
+endif
 
 all: puml html pdf docx 
 puml: prepare $(puml_svg) $(puml_png)
@@ -52,10 +59,10 @@ $(plantuml-icon-font-sprites):
 	| pandoc --from=docbook --to=docx --output build/docx/$(@F) --highlight-style espresso
 
 %.svg: %.puml
-	java -jar $(DIR)/tool/plantuml.jar -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" $^ -tsvg -o "$(shell pwd)/build/svg/"
+	java -jar $(DIR)/tool/plantuml.jar $(c4_options) $^ -tsvg -o "$(shell pwd)/build/svg/"
 
 %.png: %.puml
-	java -jar $(DIR)/tool/plantuml.jar -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"  $^ -tpng -o "$(shell pwd)/build/png/"
+	java -jar $(DIR)/tool/plantuml.jar $(c4_options)  $^ -tpng -o "$(shell pwd)/build/png/"
 
 clean:
 	@rm -rf build/pdf build/html build/svg build/png build/docx
