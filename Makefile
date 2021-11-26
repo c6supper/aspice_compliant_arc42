@@ -6,15 +6,17 @@ docx += $(docs:.adoc=.docx)
 puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg)
 puml_png := $(puml_src:.puml=.png)
-options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a platform-path="$(DIR)" -B $(shell pwd)
+adoc_options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a platform-path="$(DIR)" -B $(shell pwd)
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"
 
 ifeq ($(strip $(EE_ARCH)),3.x)
 	c4_options += -DEE_ARCH="3.x"
+	adoc_options += -a ee_arch="$(3.x)"
 else
 	c4_options += -DEE_ARCH="4.0"
+	adoc_options += -a ee_arch="$(4.0)"
 endif
 
 all: puml html pdf docx 
@@ -49,13 +51,13 @@ $(plantuml-icon-font-sprites):
 
 # Call asciidoctor to generate $(@F) from $^
 %.pdf: %.adoc
-	bundler exec asciidoctor-pdf $^ $(options) -o build/pdf/$(@F)
+	bundler exec asciidoctor-pdf $^ $(adoc_options) -o build/pdf/$(@F)
 
 %.html: %.adoc
-	bundler exec asciidoctor --backend html5 -a data-uri $(options) $^ -o build/html/$(@F)
+	bundler exec asciidoctor --backend html5 -a data-uri $(adoc_options) $^ -o build/html/$(@F)
 
 %.docx: %.adoc
-	bundler exec asciidoctor --backend docbook $(options) -o - $^ \
+	bundler exec asciidoctor --backend docbook $(adoc_options) -o - $^ \
 	| pandoc --from=docbook --to=docx --output build/docx/$(@F) --highlight-style espresso
 
 %.svg: %.puml

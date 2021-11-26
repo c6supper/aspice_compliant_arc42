@@ -1,0 +1,96 @@
+@startuml
+!if %variable_exists("RELATIVE_INCLUDE")
+!include %get_variable_value("RELATIVE_INCLUDE")/C4_Context.puml
+!else
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!endif
+
+!include config.puml
+
+LAYOUT_TOP_DOWN()
+LAYOUT_LANDSCAPE()
+' LAYOUT_AS_SKETCH()
+' LAYOUT_WITH_LEGEND()
+
+Person(customer, "Customer", "Driver and Passenger", $sprite="users")
+
+System_Boundary(cdc, "Smart Cockpit System based on EE $ee_arch") {
+  System(hut, "HUT", "Smart Cockpit Domain Controller")
+  System_Ext(tbox, "4G/5G T-Box", "Telematics-Box")
+  System_Ext(hud, "HUD/AR-HUD", "Heads-up Display")
+  System_Ext(whud, "W-HUD", "Windshield Heads-up Display")
+  System_Ext(etc, "ETC", "Electronic Toll Collection")
+  System_Ext(display, "IVI/Passenger/Cluser", "Display Screen")
+  System_Ext(wifi_display, "RSE", "Rear Display Screen")
+  System_Ext(amp, "AMP", "External Amplifier")
+  System_Ext(stbs, "STBS", "Todo")
+  System_Ext(cms_l, "CMS_L", "Todo")
+  System_Ext(cms_r, "CMS_R", "Todo")
+
+  Rel_L(hut, stbs, "Control","CAN")
+  Rel_L(hut, cms_l, "Control","CAN")
+  Rel_L(hut, cms_r, "Control","CAN")
+
+  Rel_L(hut, amp, "Control","CAN")
+  Rel_L(hut, tbox, "Access Internet","CANFD/1GE-T1")
+  Rel_L(hut, hud, "Control","CAN")
+  Rel_L(hut, whud, "Drive/Control","FP DLINK/I2C")
+  Rel_L(hut, etc, "Control","CAN")
+  Rel_L(hut, display, "Drive/Control","FP DLINK/I2C")
+  Rel_L(hut, wifi_display, "Drive/Control","WIFI")
+}
+
+Rel(customer, cdc, "Interact","Display/Touch/Speech/Camera etc.")
+
+!if ($ee_arch == "4.0") 
+  System_Ext(icu, "ICU", "Central Computing Unit (EE4.0 only)")
+  System_Ext(viu_f, "VIU-F", "Central Computing Unit (EE4.0 only)")
+  System_Ext(viu_r, "VIU-R", "Central Computing Unit (EE4.0 only)")
+  System_Ext(viu_l, "VIU-L", "Central Computing Unit (EE4.0 only)")
+  System_Ext(ccu, "CCU", "Central Computing Unit (EE4.0 only)")
+
+  Rel(ccu, hut, "Control","CANFD/1GE-T1")
+  Rel(ccu, icu, "Control","CANFD/1GE-T1")
+  Rel(ccu, viu_f,  "Control","CANFD/1GE-T1")
+  Rel(ccu, viu_l,  "Control","CANFD/1GE-T1")
+  Rel(ccu, viu_r,  "Control","CANFD/1GE-T1")
+
+  System_Boundary(cdc, "") {
+    System_Ext(ebox, "E-Box", "4G Telematics-Box")
+    System_Ext(xbox, "XBox-D(DOCK)", "Todo what hell is this!!!!")
+    System_Ext(fphd, "FPHD", "Todo")
+    System_Ext(dhmr, "DHMR", "Todo")
+    System_Ext(svm, "SVM", "Todo")
+    System_Ext(eclk, "ECLK", "External Clock")
+
+    Rel_R(hut, fphd, "Control","CAN/1GE-T1")
+    Rel_R(hut, dhmr, "Control","CAN")
+    Rel_R(hut, svm, "Control","CAN")
+    Rel_R(hut, ebox, "Access Internet","CANFD/1GE-T1")
+    Rel_R(hut, xbox, "Todo","CANFD")
+    Rel_R(hut, eclk, "Synchronize Clock","CANFD")
+  }
+
+!else
+  System_Ext(gw, "Gateway", "Central Computing Unit (EE3.X only)")
+  Rel(gw, hut, "Control","CANFD/1GE-T1")
+  System_Ext(pdcu, "PDCU", "Powertrain Domain Unit (EE3.X only)")
+  Rel(gw, pdcu, "Control","CANFD")
+  System_Ext(idc, "IDC", "Central Computing Unit (EE3.X only)")
+  Rel(gw, idc, "Control","CANFD/1GE-T1")
+  System_Ext(bdc, "BDC", "Body Control (EE3.X only)")
+  Rel(gw, bdc, "Control","CAN")
+
+  System_Boundary(cdc, "") {
+    System_Ext(vmdr, "VMDR", "Todo")
+    System_Ext(obr, "OBR", "Todo what hell is this!!!!")
+
+    Rel_R(hut, vmdr, "Control","CAN/1GE-T1")
+    Rel_R(hut, obr, "Control","CAN")
+  }
+
+!endif
+
+SHOW_LEGEND()
+
+@enduml

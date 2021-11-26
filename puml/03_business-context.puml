@@ -1,0 +1,44 @@
+@startuml
+!if %variable_exists("RELATIVE_INCLUDE")
+!include %get_variable_value("RELATIVE_INCLUDE")/C4_Context.puml
+!else
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!endif
+
+!include config.puml
+
+' LAYOUT_TOP_DOWN()
+' LAYOUT_LANDSCAPE()
+' LAYOUT_AS_SKETCH()
+' LAYOUT_WITH_LEGEND()
+
+Person(customer, "Customer", "Driver and Passenger", $sprite="users")
+
+Boundary(cdc, "Vehicle based on EE $ee_arch") {
+  System(hut, "HUT", "Smart Cockpit Domain Controller")
+  
+  
+  !if ($ee_arch == "4.0") 
+    System_Ext(ccu, "CCU")
+    System_Ext(viu_r, "VIU_R")
+    System_Ext(viu_f, "VIU_F")
+    System_Ext(viu_l, "VIU_L")
+    System_Ext(icu, "ICU")
+    Rel_U(ccu, hut, "")
+    Rel_D(ccu, viu_r, "")
+    Rel_L(ccu, viu_f, "")
+    Rel_D(ccu, viu_l, "")
+    Rel_R(ccu, icu, "")
+  !else
+    System_Ext(bdc, "Body Domain Controller")
+    System_Ext(drive_train, "Power Train Domin Controller")
+    System_Ext(gw, "Gateway")
+    System_Ext(adas, "ADAS/ADS System")
+  !endif
+}
+Rel(customer, hut, "Commands")
+Rel_Back(customer, hut, "State")
+
+SHOW_LEGEND()
+
+@enduml

@@ -1,7 +1,9 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-
+ifdef::env-vscode[]
+include::../../env.adoc[]
+endif::[]
 // [role="arc42help"]
 // ****
 // .Contents
@@ -21,24 +23,6 @@
 // ****
 This section describes the environment of {target-project}. Who are its users, and with which other systems does it interact with.
 
-=== Business Context
-.Business Context of {target-project}
-image::../../build/svg/03_system-context.svg[]
-
-[options="header", cols="1,4"]
-.Business Context
-|===
-| Neighbor | Description
-| user | documents software with toolchain that generates html. Wants to ensure that
-links within this html are valid.
-| build system |
-| local html files | kbd:[HtmlSC] reads and parses local html files and
-performs sanity checks within those.
-| local image files | kbd:[HtmlSC] checks if linked images exist as (local) files.
-| external web resources | kbd:[HtmlSC] can be configured to optionally check for the existence
-of external web resources. Due to the nature of web systems, this check might need a significant
-amount of time and might yield invalid results due to network and latency issues.
-|===
 // [role="arc42help"]
 // ****
 // .Contents
@@ -59,24 +43,59 @@ amount of time and might yield invalid results due to network and latency issues
 
 // **<optionally: Explanation of external domain interfaces>**
 
+=== Business Context
+.Business Context of {target-project}
+image::../../build/svg/03_business-context.svg[]
+
+ifeval::[{ee_arch} == 4.0]
+[options="header", cols="1,4"]
+.List of external systems
+|===
+| Neighbor | Description
+| CCU | http://10.52.245.125:8090/display/CCU/GWM_CCU+Home[Project Entry]
+| ICU | http://10.52.245.125:8090/display/ICU30/Project_ICU3.0+Home[Project Entry]
+| VIU | http://10.52.245.125:8090/display/VIU/Project_VIU+Home[Project Entry]
+| CEM | http://10.52.245.125:8090/display/CEM/Project_CEM+Home[Project Entry]
+|===
+endif::[]
+
 === Technical Context
 
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+// [role="arc42help"]
+// ****
+// .Contents
+// Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
 
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+// .Motivation
+// Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
 
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
+// .Form
+// E.g. UML deployment diagram describing channels to neighboring systems,
+// together with a mapping table showing the relationships between channels and input/output.
 
-****
+// ****
 
-**<Diagram or Table>**
+// **<Diagram or Table>**
 
-**<optionally: Explanation of technical interfaces>**
+// **<optionally: Explanation of technical interfaces>**
 
-**<Mapping Input/Output to Channels>**
+// **<Mapping Input/Output to Channels>**
+
+.Technical Context of {target-project}
+image::../../build/svg/03_technical-context.svg[]
+.List of interface
+|===
+| Interface | Channel
+| BT/WIFI Antenna | RF
+| Power | Power
+| LIN ECU | LIN
+| CAN ECU | CAN/CANFD
+| Ethernet ECU | 100M/1G T1
+| Display | LVDS
+| Camera | LVDS
+| External AMP | A2B
+| GNSS/GPS | Fakra
+| Radio Antenna | Fakra
+| Analog MIC | Analog
+| Digital MIC | BT
+|===
