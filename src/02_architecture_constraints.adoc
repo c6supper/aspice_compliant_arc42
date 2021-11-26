@@ -1,6 +1,10 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
+ifdef::env-vscode[]
+include::../../env.adoc[]
+endif::[]
+
 // [role="arc42help"]
 // ****
 // .Contents

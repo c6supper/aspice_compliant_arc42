@@ -1,6 +1,9 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
+ifdef::env-vscode[]
+include::../../env.adoc[]
+endif::[]
 
 [role="arc42help"]
 ****
