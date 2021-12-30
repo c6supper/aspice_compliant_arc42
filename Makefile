@@ -2,7 +2,7 @@ DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 docs += $(DIR)/design-doc.adoc
 pdfs += $(docs:.adoc=.pdf)
 htmls += $(docs:.adoc=.html)
-docx += $(docs:.adoc=.docx)
+odt += $(docs:.adoc=.odt)
 puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg)
 puml_png := $(puml_src:.puml=.png)
@@ -19,17 +19,17 @@ else
 	adoc_options += -a ee_arch="$(4.0)"
 endif
 
-all: puml html pdf docx 
+all: puml html pdf odt 
 puml: prepare $(puml_svg) $(puml_png)
 html: puml $(htmls)
 pdf: puml $(pdfs)
-docx: puml $(docx)
+odt: puml $(odt)
 
-.PHONY: all pdf html docx clean puml prepare distclean
+.PHONY: all pdf html odt clean puml prepare distclean
 .NOTPARALLEL:
 
 build_dir:
-	@mkdir -p build/docx
+	@mkdir -p build/odt
 	@mkdir -p build/svg
 	@mkdir -p build/png
 
@@ -56,9 +56,9 @@ $(plantuml-icon-font-sprites):
 %.html: %.adoc
 	bundler exec asciidoctor --backend html5 -a data-uri $(adoc_options) $^ -o build/html/$(@F)
 
-%.docx: %.adoc
+%.odt: %.adoc
 	bundler exec asciidoctor --backend docbook $(adoc_options) -o - $^ \
-	| pandoc --from=docbook --to=docx --output build/docx/$(@F) --highlight-style espresso
+	| pandoc --toc --from=docbook --reference-doc $(DIR)/theme/reference.odt --to=odt --output build/odt/$(@F) --highlight-style espresso
 
 %.svg: %.puml
 	java -jar $(DIR)/tool/plantuml.jar $(c4_options) $^ -tsvg -o "$(shell pwd)/build/svg/"
@@ -67,7 +67,7 @@ $(plantuml-icon-font-sprites):
 	java -jar $(DIR)/tool/plantuml.jar $(c4_options)  $^ -tpng -o "$(shell pwd)/build/png/"
 
 clean:
-	@rm -rf build/pdf build/html build/svg build/png build/docx
+	@rm -rf build/pdf build/html build/svg build/png build/odt
 
 distclean:
 	@rm -rf build

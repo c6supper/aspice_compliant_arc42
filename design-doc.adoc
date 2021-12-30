@@ -1,7 +1,12 @@
 // configure EN settings for asciidoc
 include::{platform-path}/src/config.adoc[]
 // parameters for document
+ifdef::env-vscode[]
+include::../env.adoc[]
+endif::[]
+ifndef::env-vscode[]
 include::{docdir}/env.adoc[]
+endif::[]
 
 = {hardware-version} {doc-title}
 Author {doc-author}
