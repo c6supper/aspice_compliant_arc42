@@ -1,12 +1,12 @@
 DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
-docs += $(DIR)/design-doc.adoc
+# docs += $(DIR)/design-doc.adoc
 pdfs += $(docs:.adoc=.pdf)
 htmls += $(docs:.adoc=.html)
 odt += $(docs:.adoc=.odt)
-puml_src += $(wildcard $(DIR)/puml/*.puml)
+# puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg)
 puml_png := $(puml_src:.puml=.png)
-adoc_options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)" -B $(shell pwd)
+adoc_options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"
