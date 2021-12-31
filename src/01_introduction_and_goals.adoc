@@ -14,7 +14,7 @@
 ____
 The EEA upgrade will be the focus in the next 2-3 years, which will accelerate the introduction of domain controllers. The automotive EEA upgrade is mainly reflected in three aspects: software architecture, hardware architecture, and communication architecture. Software architecture will gradually realize hierarchical decoupling, hardware will develop from distributed style to Domain controller/centralized style, and automotive network backbone will develop from LIN/CAN bus to Ethernet.
 ____
-The {target-project} is a foundation software component which mainly focus on the cockpit domain controller's infrastructure layer, working together with {hardware-version} {hardware-name} hardware to deliver a solid platform to automotive OEMs to meet the explosive software demanding driven by the automotive market.
+The {target-project} is a foundation software component which mainly focus on the cockpit domain controller's infrastructure layer, working together with {hardware-version} {hardware-name} hardware to deliver a solid utility to automotive OEMs to meet the explosive software demanding driven by the automotive market.
 
 === Requirements Overview
 
@@ -37,7 +37,7 @@ The {target-project} is a foundation software component which mainly focus on th
 // ****
 
 .What is {target-project}?
-A vehicle cockpit domain controller software platform, which is compatible with {customer}'s {customer-product} architecture.
+A vehicle cockpit domain controller software utility, which is compatible with {customer}'s {customer-product} architecture.
 In addition {hardware-version} {hardware-name} Software Platform could also be ported to other car brands' architectures.
 
 .Essential Features

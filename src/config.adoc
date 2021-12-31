@@ -2,11 +2,11 @@
 // ==================================
 
 // where are images located?
-:imagesdir: {platform-path}/images
+:imagesdir: {utility-path}/images
 
 ifdef::backend-pdf[]
 :pdf-theme: chronicles
-:pdf-themesdir: {platform-path}/theme
+:pdf-themesdir: {utility-path}/theme
 :title-logo-image: image:logo.png[pdfwidth=4.25in,align=center]
 :source-highlighter: rouge
 :rouge-style: github

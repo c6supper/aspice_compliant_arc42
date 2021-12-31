@@ -33,7 +33,7 @@ The few constraints on this project are reflected in the final solution. This se
 | TC1 | http://10.52.245.125:8090/pages/viewpage.action?pageId=30645376[NAT_C0202_05_WI_03] | Software Design Tool Guideline
 | TC2 | http://10.52.245.125:8090/pages/viewpage.action?pageId=33851268[NAT_C0202_05_WI_04] | FEMA Guideline
    3+e| Operating System Constraints
-| TC4 | Deployable to a QNX + Android environment  | The platform should be deployable through a specific QNX and Android environment which is customized for {hardware-name}
+| TC4 | Deployable to a QNX + Android environment  | The utility should be deployable through a specific QNX and Android environment which is customized for {hardware-name}
    3+e| Hardware Constraints
 | TC5 | CPU friendly | CPU can be limited (Qualcomm SA8155P/SA6155)
 | TC6 | Memory friendly | link:pass:[http://10.52.245.131:8080/svn/V3.5/50_Development/5020_Software/502020_Software_Modules/50202011_BSP/HLD/Hypervisor/V3.5_HLD_Hypervisor.docx][Memory Carveouts]

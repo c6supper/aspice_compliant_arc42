@@ -1,5 +1,5 @@
 // configure EN settings for asciidoc
-include::{platform-path}/src/config.adoc[]
+include::{utility-path}/src/config.adoc[]
 // parameters for document
 ifdef::env-vscode[]
 include::../env.adoc[]
@@ -10,7 +10,7 @@ endif::[]
 
 = {hardware-version} {doc-title}
 Author {doc-author}
-Platform({platform-version}) {product}({product-version}) Built on {docdate}
+Platform({utility-version}) {product}({product-version}) Built on {docdate}
 :toc-title: Table of Contents
 :doctype: book
 :icons: font
@@ -35,7 +35,7 @@ ifdef::backend-html5[]
 endif::backend-html5[]
 
 // Revision
-include::{platform-path}/src/00_revision.adoc[]
+include::{utility-path}/src/00_revision.adoc[]
 // horizontal line
 ***
 
@@ -44,48 +44,48 @@ include::{platform-path}/src/00_revision.adoc[]
 
 <<<<
 // 1. Introduction and Goals
-include::{platform-path}/src/01_introduction_and_goals.adoc[]
+include::{utility-path}/src/01_introduction_and_goals.adoc[]
 
 <<<<
 // 2. Architecture Constraints
-include::{platform-path}/src/02_architecture_constraints.adoc[]
+include::{utility-path}/src/02_architecture_constraints.adoc[]
 
 <<<<
 // 3. System Scope and Context
-include::{platform-path}/src/03_system_scope_and_context.adoc[]
+include::{utility-path}/src/03_system_scope_and_context.adoc[]
 
 <<<<
 // 4. Solution Strategy
-include::{platform-path}/src/04_solution_strategy.adoc[]
+include::{utility-path}/src/04_solution_strategy.adoc[]
 
 <<<<
 // 5. Building Block View
-include::{platform-path}/src/05_building_block_view.adoc[]
+include::{utility-path}/src/05_building_block_view.adoc[]
 
 <<<<
 // 6. Runtime View
-include::{platform-path}/src/06_runtime_view.adoc[]
+include::{utility-path}/src/06_runtime_view.adoc[]
 
 <<<<
 // 7. Deployment View
-include::{platform-path}/src/07_deployment_view.adoc[]
+include::{utility-path}/src/07_deployment_view.adoc[]
 
 <<<<
 // 8. Concepts
-include::{platform-path}/src/08_concepts.adoc[]
+include::{utility-path}/src/08_concepts.adoc[]
 
 <<<<
 // 9. Design Decisions
-include::{platform-path}/src/09_design_decisions.adoc[]
+include::{utility-path}/src/09_design_decisions.adoc[]
 
 <<<<
 // 10. Quality Scenarios
-include::{platform-path}/src/10_quality_scenarios.adoc[]
+include::{utility-path}/src/10_quality_scenarios.adoc[]
 
 <<<<
 // 11. Technical Risks
-include::{platform-path}/src/11_technical_risks.adoc[]
+include::{utility-path}/src/11_technical_risks.adoc[]
 
 <<<<
 // 12. Glossary
-include::{platform-path}/src/12_glossary.adoc[]
+include::{utility-path}/src/12_glossary.adoc[]
