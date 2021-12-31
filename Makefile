@@ -20,7 +20,8 @@ else
 endif
 
 all: puml html pdf odt 
-puml: prepare $(puml_svg) $(puml_png)
+# puml: prepare $(puml_svg) $(puml_png)
+puml: prepare $(puml_svg)
 html: puml $(htmls)
 pdf: puml $(pdfs)
 odt: puml $(odt)
