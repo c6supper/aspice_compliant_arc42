@@ -1,8 +1,9 @@
 DIR:=$(strip $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 # docs += $(DIR)/design-doc.adoc
-pdfs += $(docs:.adoc=.pdf)
+pdfs += $(docs:.adoc=.pdf) 
 htmls += $(docs:.adoc=.html)
 odt += $(docs:.adoc=.odt)
+
 # puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg)
 puml_png := $(puml_src:.puml=.png)
@@ -27,7 +28,7 @@ pdf: puml $(pdfs)
 odt: puml $(odt)
 
 .PHONY: all pdf html odt clean puml prepare distclean
-.NOTPARALLEL:
+# .NOTPARALLEL:
 
 build_dir:
 	@mkdir -p build/odt
@@ -52,20 +53,20 @@ $(plantuml-icon-font-sprites):
 
 # Call asciidoctor to generate $(@F) from $^
 %.pdf: %.adoc
-	bundler exec asciidoctor-pdf $^ $(adoc_options) -o build/pdf/$(@F)
+	bundler exec asciidoctor-pdf $^ $(adoc_options) -o build/pdf/$@
 
 %.html: %.adoc
-	bundler exec asciidoctor --backend html5 -a data-uri $(adoc_options) $^ -o build/html/$(@F)
+	bundler exec asciidoctor --backend html5 -a data-uri $(adoc_options) $^ -o build/html/$@
 
 %.odt: %.adoc
-	bundler exec asciidoctor --backend docbook $(adoc_options) -o - $^ \
-	| pandoc --toc --from=docbook --reference-doc $(DIR)/theme/reference.odt --to=odt --output build/odt/$(@F) --highlight-style espresso
+	mkdir -p $(shell pwd)/build/odt/$(@D) && bundler exec asciidoctor --backend docbook $(adoc_options) -o - $^ \
+	| pandoc --toc --from=docbook --reference-doc $(DIR)/theme/reference.odt --to=odt --output $(shell pwd)/build/odt/$@ --highlight-style espresso
 
 %.svg: %.puml
-	java -jar $(DIR)/tool/plantuml.jar $(c4_options) $^ -tsvg -o "$(shell pwd)/build/svg/"
+	java -jar $(DIR)/tool/plantuml.jar $(c4_options) $^ -tsvg -o "$(shell pwd)/build/svg/$(@D)"
 
 %.png: %.puml
-	java -jar $(DIR)/tool/plantuml.jar $(c4_options)  $^ -tpng -o "$(shell pwd)/build/png/"
+	java -jar $(DIR)/tool/plantuml.jar $(c4_options)  $^ -tpng -o "$(shell pwd)/build/png/$(@D)"
 
 clean:
 	@rm -rf build/pdf build/html build/svg build/png build/odt
