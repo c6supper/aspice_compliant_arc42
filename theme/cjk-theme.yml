@@ -1,3 +1,13 @@
+extends: default
+role:
+  love:
+    font-color: E0245E
+  wild:
+    font-color: 222222
+    text-transform: uppercase
+    font-style: italic
+    background-color: BCD637
+    border-offset: 1.5
 font:
   catalog:
     KaiGen Gothic CN:
@@ -200,7 +210,23 @@ toc:
   #dot_leader_content: ". "
   line_height: 1.4
 # NOTE In addition to footer, header is also supported
+header:
+  font_color: 999999
+  height: 0.5in
+  recto:
+    columns: "<40% =20% >40%"
+    right:
+      content: '_{organization}_'
+    left:
+      content: image:../../images/logo.png[pdfwidth=2.0in]
+  verso:
+    columns: $header_recto_columns
+    left:
+      content: $header_recto_left_content
+    right:
+      content: $header_recto_right_content
 footer:
+  height: 0.45in
   font_size: $base_font_size_small
   font_color: $base_font_color
   # NOTE if background_color is set, background and border will span width of page
@@ -209,6 +235,12 @@ footer:
   height: $base_line_height_length * 2.5
   padding: [$base_line_height_length / 2, 1, 0, 1]
   valign: top
+  recto:
+    right:
+      content: '{section-or-chapter-title} | {page-number} of {page-count}'
+  verso:
+    left:
+      content: '{page-number} of {page-count} | {section-or-chapter-title}'
   #image_valign: <alignment> or <number>
   # additional attributes for content:
   # * {page-count}
@@ -218,12 +250,12 @@ footer:
   # * {chapter-title}
   # * {section-title}
   # * {section-or-chapter-title}
-  recto_content:
+  # recto_content:
     #right: '{section-or-chapter-title} | {page-number}'
     #right: '{document-title} | {page-number}'
-    right: '{page-number}'
+    # right: '{page-number}'
     #center: '{page-number}'
-  verso_content:
+  # verso_content:
     #left: '{page-number} | {chapter-title}'
-    left: '{page-number}'
+    # left: '{page-number}'
     #center: '{page-number}'
