@@ -7,10 +7,11 @@ odt += $(docs:.adoc=.odt)
 # puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg)
 puml_png := $(puml_src:.puml=.png)
-adoc_options :=  -a pdf-style="$(DIR)/theme/chronicles-theme.yml" -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
+adoc_options := -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"
+cjk := $(shell pwd)/build/font
 
 ifeq ($(strip $(EE_ARCH)),3.x)
 	c4_options += -DEE_ARCH="3.x"
@@ -19,6 +20,12 @@ else
 	c4_options += -DEE_ARCH="4.0"
 	adoc_options += -a ee_arch="$(4.0)"
 endif
+
+ifeq ($(strip $(LANGUAGE)),)
+	LANGUAGE = ch
+endif
+
+adoc_options += -a language="$(LANGUAGE)"
 
 all: puml html pdf odt 
 # puml: prepare $(puml_svg) $(puml_png)
@@ -35,7 +42,7 @@ build_dir:
 	@mkdir -p build/svg
 	@mkdir -p build/png
 
-prepare: build_dir $(c4) $(plantuml-icon-font-sprites)
+prepare: build_dir $(c4) $(plantuml-icon-font-sprites) $(cjk)
 	
 $(c4):
 	if [ ! -d $(shell pwd)/build/c4-template ]; then \
@@ -49,6 +56,11 @@ $(plantuml-icon-font-sprites):
         wget -T 5 -c https://github.com/tupadr3/plantuml-icon-font-sprites/archive/refs/tags/v2.4.0.tar.gz -O $(shell pwd)/build/plantuml-icon-font-sprites.tar.gz && \
 		tar -xf $(shell pwd)/build/plantuml-icon-font-sprites.tar.gz -C $(shell pwd)/build/ && \
 		mv $(shell pwd)/build/plantuml-icon-font-sprites-2.4.0 $(shell pwd)/build/plantuml-icon-font-sprites; \
+    fi
+
+$(cjk):
+	if [ ! -d $(shell pwd)/build/font ]; then \
+		tar -xf $(DIR)/resource/font.tar.xz -C $(shell pwd)/build/; \
     fi
 
 # Call asciidoctor to generate $(@F) from $^
