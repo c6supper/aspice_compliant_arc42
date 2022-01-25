@@ -13,6 +13,8 @@
 ## Setup 
 1. **Install ruby (> 2.5), ruby-bundler, pandoc(latest), rsvg-convert**
 2. **Run bundle config set --local path .bundle/gems && bundle**
+3. **sudo apt-get install language-pack-zh***
+4. **sudo apt-get install fonts-arphic-ukai fonts-arphic-uming fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core**
 
 ## Build 
 1. **make , possible args EE_ARCH=4.0 or 3.x**

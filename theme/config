@@ -1,14 +1,15 @@
 !if %variable_exists("RELATIVE_INCLUDE")
-!define DEVICONS %get_variable_value("RELATIVE_INCLUDE")/../plantuml-icon-font-sprites/devicons
-!define FONTAWESOME %get_variable_value("RELATIVE_INCLUDE")/../plantuml-icon-font-sprites/font-awesome-5
+  !define DEVICONS %get_variable_value("RELATIVE_INCLUDE")/../plantuml-icon-font-sprites/devicons
+  !define FONTAWESOME %get_variable_value("RELATIVE_INCLUDE")/../plantuml-icon-font-sprites/font-awesome-5
 !else
-!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
-!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+  !define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+  !define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
 !endif
 
 !include FONTAWESOME/users.puml
 
-skinparam wrapWidth auto
+' skinparam wrapWidth auto
+skinparam wrapWidth 200
 skinparam Backgroundcolor transparent
 skinparam defaultTextAlignment center
 
