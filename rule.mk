@@ -26,7 +26,7 @@ ifeq ($(strip $(LANGUAGE)),)
 	LANGUAGE = en
 endif
 
-plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iuml/$(LANGUAGE)"
+plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iuml:$(shell pwd)/src/resource/json/$(LANGUAGE)"
 
 adoc_options += -a language="$(LANGUAGE)"
 
