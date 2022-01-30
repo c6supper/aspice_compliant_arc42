@@ -16,3 +16,12 @@ skinparam defaultTextAlignment center
 !$language = %get_variable_value("language")
 
 !$ee_arch = %get_variable_value("EE_ARCH")
+
+' utility function
+!unquoted function $get($idx, $array)
+    !foreach $ecu in $array
+        !if $ecu.idx == $idx
+            !return $ecu
+        !endif
+    !endfor
+!endfunction
