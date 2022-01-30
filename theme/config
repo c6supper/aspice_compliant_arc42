@@ -13,4 +13,6 @@ skinparam wrapWidth 200
 skinparam Backgroundcolor transparent
 skinparam defaultTextAlignment center
 
+!$language = %get_variable_value("language")
+
 !$ee_arch = %get_variable_value("EE_ARCH")

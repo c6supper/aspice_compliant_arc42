@@ -23,8 +23,10 @@ else
 endif
 
 ifeq ($(strip $(LANGUAGE)),)
-	LANGUAGE = ch
+	LANGUAGE = en
 endif
+
+plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/json/$(LANGUAGE)"
 
 adoc_options += -a language="$(LANGUAGE)"
 
@@ -76,10 +78,10 @@ $(cjk):
 	| pandoc --toc --from=docbook --reference-doc $(DIR)/theme/reference.odt --to=odt --output $(shell pwd)/build/odt/$@ --highlight-style espresso
 
 %.svg: %.puml
-	java -jar $(DIR)/tool/plantuml.jar $(c4_options) $(theme_options) $^ -charset UTF-8 -tsvg -o "$(shell pwd)/build/svg/$(@D)"
+	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(c4_options) $(theme_options) $^ -charset UTF-8 -tsvg -o "$(shell pwd)/build/svg/$(@D)"
 
 %.png: %.puml
-	java -jar $(DIR)/tool/plantuml.jar $(c4_options) $(theme_options)  $^ -charset UTF-8 -tpng -o "$(shell pwd)/build/png/$(@D)"
+	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(c4_options) $(theme_options)  $^ -charset UTF-8 -tpng -o "$(shell pwd)/build/png/$(@D)"
 
 clean:
 	@rm -rf build/pdf build/html build/svg build/png build/odt
