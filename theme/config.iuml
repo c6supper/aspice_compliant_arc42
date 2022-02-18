@@ -17,6 +17,8 @@ skinparam defaultTextAlignment center
 
 !$ee_arch = %get_variable_value("EE_ARCH")
 
+!$log_level = %get_variable_value("LOG_LEVEL")
+
 ' utility function
 !unquoted function $get($idx, $array)
     !foreach $ecu in $array
@@ -25,3 +27,15 @@ skinparam defaultTextAlignment center
         !endif
     !endfor
 !endfunction
+
+!unquoted procedure $logDebug($log)
+  !if ($log_level == "debug") 
+    !log $log
+  !endif
+!endprocedure
+
+!unquoted procedure $logInfo($log)
+  !if ($log_level == "info") 
+    !log $log
+  !endif
+!endprocedure
