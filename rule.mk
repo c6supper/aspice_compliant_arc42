@@ -32,12 +32,12 @@ endif
 
 c4_options += -DLOG_LEVEL="$(LOG_LEVEL)"
 
-plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iuml:$(shell pwd)/src/resource/json/:$(shell pwd)/src/resource/json/$(LANGUAGE)"
+plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iuml:$(shell pwd)/src/resource/json/:$(shell pwd)/src/resource/json/$(LANGUAGE):$(shell pwd)/src/srs_doc/platform/resource/json"
 
 adoc_options += -a language="$(LANGUAGE)"
 
 all: puml html pdf odt 
-# puml: prepare $(puml_svg) $(puml_png)
+# puml: prepare $(puml_png)
 puml: prepare $(puml_svg)
 html: puml $(htmls)
 pdf: puml $(pdfs)
