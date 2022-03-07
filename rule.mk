@@ -11,7 +11,7 @@ adoc_options := -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 theme_options := -DTHEME_INCLUDE=$(DIR)/theme
-c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template"
+c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUDE="$(shell pwd)/src"
 cjk := $(shell pwd)/build/font
 
 ifeq ($(strip $(EE_ARCH)),3.x)
