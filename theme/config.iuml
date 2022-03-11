@@ -12,6 +12,7 @@
 skinparam wrapWidth 200
 skinparam Backgroundcolor transparent
 skinparam defaultTextAlignment center
+skinparam fixCircleLabelOverlapping true
 
 !$language = %get_variable_value("language")
 
