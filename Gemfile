@@ -5,4 +5,4 @@ gem 'prawn-table', github: 'prawnpdf/prawn-table', branch: 'HEAD'
 gem 'rouge'
 gem 'pygments.rb'
 gem 'coderay'
-
+gem 'asciidoctor-revealjs'
