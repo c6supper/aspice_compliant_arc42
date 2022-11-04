@@ -8,6 +8,8 @@
 
 !include FONTAWESOME/users.puml
 
+UpdateEnterpriseBoundaryStyle($bgColor="gold", $fontColor="brown", $borderColor="brown")
+
 ' skinparam wrapWidth auto
 skinparam wrapWidth 200
 skinparam Backgroundcolor transparent

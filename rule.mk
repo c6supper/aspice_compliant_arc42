@@ -55,9 +55,9 @@ prepare: build_dir $(c4) $(plantuml-icon-font-sprites) $(cjk)
 	
 $(c4):
 	if [ ! -d $(shell pwd)/build/c4-template ]; then \
-        wget -T 5 -c https://github.com/plantuml-stdlib/C4-PlantUML/archive/refs/tags/v2.4.0.tar.gz -O $(shell pwd)/build/c4-template.tar.gz && \
-		tar -xf $(shell pwd)/build/c4-template.tar.gz -C $(shell pwd)/build/ && \
-		mv $(shell pwd)/build/C4-PlantUML-2.4.0 $(shell pwd)/build/c4-template; \
+        wget -T 5 -c https://github.com/plantuml-stdlib/C4-PlantUML/archive/refs/heads/master.zip -O $(shell pwd)/build/c4-template.zip && \
+		unzip -q $(shell pwd)/build/c4-template.zip -d $(shell pwd)/build/ && \
+		mv $(shell pwd)/build/C4-PlantUML-master $(shell pwd)/build/c4-template; \
     fi
 
 $(plantuml-icon-font-sprites):
