@@ -37,7 +37,7 @@ plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iu
 adoc_options += -a language="$(LANGUAGE)"
 
 all: puml html pdf odt 
-# puml: prepare $(puml_png)
+puml_png: prepare $(puml_png)
 puml: prepare $(puml_svg)
 html: puml $(htmls)
 pdf: puml $(pdfs)
