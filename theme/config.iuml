@@ -8,18 +8,6 @@
 
 !include FONTAWESOME/users.puml
 
-!if %function_exists("$some_function")
-  AddBoundaryTag("qnx", $bgColor="#Cyan")
-  AddBoundaryTag("android", $bgColor="#Wheat")
-  AddBoundaryTag("autosar", $bgColor="#APPLICATION")
-
-  AddBoundaryTag("group_mcu", $bgColor="#Tan")
-  AddBoundaryTag("group_cluster", $bgColor="#Thistle")
-  AddBoundaryTag("group_bsp", $bgColor="#RoyalBlue")
-  AddBoundaryTag("group_ivi", $bgColor="#Gold")
-  AddBoundaryTag("group_infra", $bgColor="#Lime")
-!endif
-
 ' skinparam wrapWidth auto
 skinparam wrapWidth 200
 skinparam Backgroundcolor transparent
@@ -34,9 +22,9 @@ skinparam fixCircleLabelOverlapping true
 
 ' utility function
 !unquoted function $get($idx, $array)
-    !foreach $ecu in $array
-        !if $ecu.idx == $idx
-            !return $ecu
+    !foreach $item in $array
+        !if $item.idx == $idx
+            !return $item
         !endif
     !endfor
 !endfunction

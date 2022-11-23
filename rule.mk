@@ -14,12 +14,12 @@ theme_options := -DTHEME_INCLUDE=$(DIR)/theme
 c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUDE="$(shell pwd)/src"
 cjk := $(shell pwd)/build/font
 
-ifeq ($(strip $(EE_ARCH)),3.x)
-	c4_options += -DEE_ARCH="3.x"
-	adoc_options += -a ee_arch="$(3.x)"
-else
+ifeq ($(strip $(EE_ARCH)),4.0)
 	c4_options += -DEE_ARCH="4.0"
 	adoc_options += -a ee_arch="$(4.0)"
+else
+	c4_options += -DEE_ARCH="3.x"
+	adoc_options += -a ee_arch="$(3.x)"
 endif
 
 ifeq ($(strip $(LANGUAGE)),)
