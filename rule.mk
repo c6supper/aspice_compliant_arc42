@@ -5,20 +5,22 @@ htmls += $(docs:.adoc=.html)
 odt += $(docs:.adoc=.odt)
 
 # puml_src += $(wildcard $(DIR)/puml/*.puml)
-puml_svg := $(puml_src:.puml=.svg)
-puml_png := $(puml_src:.puml=.png)
+puml_svg := $(puml_src:.puml=.svg) $(puml_src:.wsd=.svg)
+puml_png := $(puml_src:.puml=.png) $(puml_src:.wsd=.png)
 adoc_options := -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 theme_options := -DTHEME_INCLUDE=$(DIR)/theme
-c4_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUDE="$(shell pwd)/src"
+puml_options := -DC4_RELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUDE="$(shell pwd)/src"
 cjk := $(shell pwd)/build/font
+archimate := $(shell pwd)/build/archimate-template
+puml_options += -DARCHIMATE_RELATIVE_INCLUDE="$(shell pwd)/build/archimate-template"
 
 ifeq ($(strip $(EE_ARCH)),4.0)
-	c4_options += -DEE_ARCH="4.0"
+	puml_options += -DEE_ARCH="4.0"
 	adoc_options += -a ee_arch="$(4.0)"
 else
-	c4_options += -DEE_ARCH="3.x"
+	puml_options += -DEE_ARCH="3.x"
 	adoc_options += -a ee_arch="$(3.x)"
 endif
 
@@ -30,7 +32,7 @@ ifeq ($(strip $(LOG_LEVEL)),)
 	LOG_LEVEL = info
 endif
 
-c4_options += -DLOG_LEVEL="$(LOG_LEVEL)"
+puml_options += -DLOG_LEVEL="$(LOG_LEVEL)"
 
 plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iuml:$(shell pwd)/src/resource/json/:$(shell pwd)/src/resource/json/$(LANGUAGE):$(shell pwd)/src/srs_doc/platform/resource/json"
 
@@ -51,13 +53,20 @@ build_dir:
 	@mkdir -p build/svg
 	@mkdir -p build/png
 
-prepare: build_dir $(c4) $(plantuml-icon-font-sprites) $(cjk)
+prepare: build_dir $(c4) $(archimate) $(plantuml-icon-font-sprites) $(cjk)
 	
 $(c4):
 	if [ ! -d $(shell pwd)/build/c4-template ]; then \
         wget -T 5 -c https://github.com/plantuml-stdlib/C4-PlantUML/archive/refs/heads/master.zip -O $(shell pwd)/build/c4-template.zip && \
 		unzip -q $(shell pwd)/build/c4-template.zip -d $(shell pwd)/build/ && \
 		mv $(shell pwd)/build/C4-PlantUML-master $(shell pwd)/build/c4-template; \
+    fi
+
+$(archimate):
+	if [ ! -d $(shell pwd)/build/archimate-template ]; then \
+        wget -T 5 -c https://github.com/plantuml-stdlib/Archimate-PlantUML/archive/refs/heads/master.zip -O $(shell pwd)/build/archimate-template.zip && \
+		unzip -q $(shell pwd)/build/archimate-template.zip -d $(shell pwd)/build/ && \
+		mv $(shell pwd)/build/Archimate-PlantUML-master $(shell pwd)/build/archimate-template; \
     fi
 
 $(plantuml-icon-font-sprites):
@@ -84,10 +93,10 @@ $(cjk):
 	| pandoc --toc --from=docbook --reference-doc $(DIR)/theme/reference.odt --to=odt --output $(shell pwd)/build/odt/$@ --highlight-style espresso
 
 %.svg: %.puml
-	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(c4_options) $(theme_options) $^ -charset UTF-8 -tsvg -o "$(shell pwd)/build/svg/$(@D)"
+	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(puml_options) $(theme_options) $^ -charset UTF-8 -tsvg -o "$(shell pwd)/build/svg/$(@D)"
 
 %.png: %.puml
-	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(c4_options) $(theme_options)  $^ -charset UTF-8 -tpng -o "$(shell pwd)/build/png/$(@D)"
+	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(puml_options) $(theme_options)  $^ -charset UTF-8 -tpng -o "$(shell pwd)/build/png/$(@D)"
 
 clean:
 	@rm -rf build/pdf build/html build/svg build/png build/odt
