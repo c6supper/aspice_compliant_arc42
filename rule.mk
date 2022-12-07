@@ -7,21 +7,21 @@ odt += $(docs:.adoc=.odt)
 # puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg) $(puml_src:.wsd=.svg)
 puml_png := $(puml_src:.puml=.png) $(puml_src:.wsd=.png)
-adoc_options := -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
+adoc_options := -r asciidoctor-diagram -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 theme_options := -DTHEME_INCLUDE=$(DIR)/theme
-puml_options := -DC4_RELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUDE="$(shell pwd)/src"
+puml_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUDE="$(shell pwd)/src"
 cjk := $(shell pwd)/build/font
 archimate := $(shell pwd)/build/archimate-template
 puml_options += -DARCHIMATE_RELATIVE_INCLUDE="$(shell pwd)/build/archimate-template"
 
 ifeq ($(strip $(QC_ARCH)),8155)
-	puml_options += -DQC_ARCH="8155"
-	adoc_options += -a qc_arch="$(8155)"
+	puml_options += -DQC_ARCH="$(QC_ARCH)"
+	adoc_options += -a qc_arch="$(QC_ARCH)"
 else
 	puml_options += -DQC_ARCH="8295"
-	adoc_options += -a qc_arch="$(8295)"
+	adoc_options += -a qc_arch="8295"
 endif
 
 ifeq ($(strip $(LANGUAGE)),)
