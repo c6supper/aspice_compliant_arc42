@@ -16,12 +16,12 @@ cjk := $(shell pwd)/build/font
 archimate := $(shell pwd)/build/archimate-template
 puml_options += -DARCHIMATE_RELATIVE_INCLUDE="$(shell pwd)/build/archimate-template"
 
-ifeq ($(strip $(EE_ARCH)),4.0)
-	puml_options += -DEE_ARCH="4.0"
-	adoc_options += -a ee_arch="$(4.0)"
+ifeq ($(strip $(QC_ARCH)),8155)
+	puml_options += -DQC_ARCH="8155"
+	adoc_options += -a qc_arch="$(8155)"
 else
-	puml_options += -DEE_ARCH="3.x"
-	adoc_options += -a ee_arch="$(3.x)"
+	puml_options += -DQC_ARCH="8295"
+	adoc_options += -a qc_arch="$(8295)"
 endif
 
 ifeq ($(strip $(LANGUAGE)),)

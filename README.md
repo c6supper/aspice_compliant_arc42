@@ -15,10 +15,11 @@
 2. **Run bundle config set --local path .bundle/gems && bundle**
 3. **sudo apt-get install language-pack-zh***
 4. **sudo apt-get install fonts-arphic-ukai fonts-arphic-uming fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core**
-5. **VSCode as default IDE**
+5. **sudo snap install drawio**
+6. **VSCode as default IDE**
 
 ## Build 
-1. **make , possible args EE_ARCH=4.0 or 3.x**
+1. **make , possible args QC_ARCH=8295 or 8155**
 
 ## Build Manually
 1. **bundle exec asciidoctor-pdf -a pdf-theme=./theme/chronicles-theme.yml index.adoc**

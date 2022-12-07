@@ -16,7 +16,7 @@ skinparam fixCircleLabelOverlapping true
 
 !$language = %get_variable_value("language")
 
-!$ee_arch = %get_variable_value("EE_ARCH")
+!$qc_arch = %get_variable_value("QC_ARCH")
 
 !$log_level = %get_variable_value("LOG_LEVEL")
 
