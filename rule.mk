@@ -40,7 +40,7 @@ puml_options += -DLOG_LEVEL="$(LOG_LEVEL)"
 
 plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iuml:$(shell pwd)/src/resource/json/:$(shell pwd)/src/resource/json/$(LANGUAGE):$(shell pwd)/src/srs_doc/platform/resource/json"
 
-adoc_options += -a language="$(LANGUAGE)"
+adoc_options += -a language="$(LANGUAGE)" -a data-uri
 
 all: puml html pdf odt presentation
 puml_png: prepare $(puml_png)
