@@ -4,6 +4,8 @@ pdfs += $(docs:.adoc=.pdf)
 htmls += $(docs:.adoc=.html)
 odt += $(docs:.adoc=.odt)
 
+presentation += $(presentation_docs:.adoc=.html)
+
 # puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg) $(puml_src:.wsd=.svg)
 puml_png := $(puml_src:.puml=.png) $(puml_src:.wsd=.png)
@@ -15,6 +17,8 @@ puml_options := -DRELATIVE_INCLUDE="$(shell pwd)/build/c4-template" -DENV_INCLUD
 cjk := $(shell pwd)/build/font
 archimate := $(shell pwd)/build/archimate-template
 puml_options += -DARCHIMATE_RELATIVE_INCLUDE="$(shell pwd)/build/archimate-template"
+
+presentation_dep := $(shell pwd)/build/presentation/resource/
 
 ifeq ($(strip $(QC_ARCH)),8155)
 	puml_options += -DQC_ARCH="$(QC_ARCH)"
@@ -38,12 +42,13 @@ plantuml_include_options = -Dplantuml.include.path="$(shell pwd)/src/resource/iu
 
 adoc_options += -a language="$(LANGUAGE)"
 
-all: puml html pdf odt 
+all: puml html pdf odt presentation
 puml_png: prepare $(puml_png)
 puml: prepare $(puml_svg)
 html: puml $(htmls)
 pdf: puml $(pdfs)
 odt: puml $(odt)
+presentation: html $(presentation) $(presentation_dep)
 
 .PHONY: all pdf html odt clean puml prepare distclean
 # .NOTPARALLEL:
@@ -53,7 +58,7 @@ build_dir:
 	@mkdir -p build/svg
 	@mkdir -p build/png
 
-prepare: build_dir $(c4) $(archimate) $(plantuml-icon-font-sprites) $(cjk)
+prepare: build_dir $(c4) $(archimate) $(plantuml-icon-font-sprites) $(cjk) $(presentation_dep)
 	
 $(c4):
 	if [ ! -d $(shell pwd)/build/c4-template ]; then \
@@ -81,6 +86,11 @@ $(cjk):
 		tar -xf $(DIR)/resource/font.tar.xz -C $(shell pwd)/build/; \
     fi
 
+$(presentation_dep):
+	if [ ! -d $(shell pwd)/build/presentation/resource ]; then \
+		mkdir -p $(shell pwd)/build/presentation/resource && cp -rf $(shell pwd)/src/presentation_doc/resource/* $(shell pwd)/build/presentation/resource/; \
+    fi
+
 # Call asciidoctor to generate $(@F) from $^
 %.pdf: %.adoc
 	bundler exec asciidoctor-pdf $^ $(adoc_options) -o build/pdf/$@
@@ -98,8 +108,11 @@ $(cjk):
 %.png: %.puml
 	java $(plantuml_include_options) -jar $(DIR)/tool/plantuml.jar $(puml_options) $(theme_options)  $^ -charset UTF-8 -tpng -o "$(shell pwd)/build/png/$(@D)"
 
+$(presentation) : $(presentation_docs) 
+	bundle exec asciidoctor-revealjs $^ -b revealjs $(adoc_options) -a revealjsdir=https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.9.2 -D build/presentation/
+
 clean:
-	@rm -rf build/pdf build/html build/svg build/png build/odt
+	@rm -rf build/pdf build/html build/svg build/png build/odt build/presentation
 
 distclean:
 	@rm -rf build
