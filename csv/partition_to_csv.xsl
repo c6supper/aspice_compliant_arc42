@@ -18,6 +18,7 @@
             <Item>bootable</Item>
             <Item>readonly</Item>
             <Item>filename</Item>
+            <Item>system</Item>
             <Item>sparse</Item>
         </xsl:variable>
 
@@ -64,6 +65,9 @@
                 <xsl:value-of select="$delimitor" />
 
                 <xsl:value-of select="@filename"/>
+                <xsl:value-of select="$delimitor" />
+
+                <xsl:value-of select="@system"/>
                 <xsl:value-of select="$delimitor" />
 
                 <xsl:value-of select="@sparse"/>
