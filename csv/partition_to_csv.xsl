@@ -38,14 +38,18 @@
         <xsl:value-of select="$newline" />
         <xsl:for-each select="physical_partition">
             <xsl:variable name="lun">
-                <!-- <xsl:value-of select='preceding-sibling::comment()[1]' /> -->
-                <xsl:analyze-string select="preceding-sibling::comment()[1]" regex="LUN(\s?)[0-9]">
+                <!-- <xsl:analyze-string select="preceding-sibling::comment()[2]" regex="This.*LUN(\s?)[0-9]">
                     <xsl:matching-substring>
                         <xsl:sequence select="."/>
+                        <xsl:message terminate="no">
+                            <xsl:value-of select="replace(.,'This is','')" />
+                        </xsl:message>
                     </xsl:matching-substring>
-                </xsl:analyze-string>
+                </xsl:analyze-string> -->
+                <xsl:value-of select="position() - 1" />
             </xsl:variable>
             <xsl:for-each select="partition">
+
                 <xsl:copy-of select="$lun" />
                 <xsl:value-of select="$delimitor" />
 
