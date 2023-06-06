@@ -87,7 +87,7 @@ $(cjk):
     fi
 
 $(presentation_dep):
-	if [ ! -d $(shell pwd)/build/presentation/resource ]; then \
+	if [ ! -d $(shell pwd)/build/presentation/resource ] && [ -d $(shell pwd)/src/presentation_doc/resource ]; then \
 		mkdir -p $(shell pwd)/build/presentation/resource && cp -rf $(shell pwd)/src/presentation_doc/resource/* $(shell pwd)/build/presentation/resource/; \
     fi
 
