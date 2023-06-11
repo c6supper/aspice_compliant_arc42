@@ -9,7 +9,7 @@ presentation += $(presentation_docs:.adoc=.html)
 # puml_src += $(wildcard $(DIR)/puml/*.puml)
 puml_svg := $(puml_src:.puml=.svg) $(puml_src:.wsd=.svg)
 puml_png := $(puml_src:.puml=.png) $(puml_src:.wsd=.png)
-adoc_options := -r asciidoctor-diagram -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)"
+adoc_options := -r asciidoctor-diagram -a scripts=cjk -a project-path="$(PROJECT_PATH)" -a utility-path="$(DIR)" $(custom_adoc_option)
 c4 := $(shell pwd)/build/c4-template
 plantuml-icon-font-sprites := $(shell pwd)/build/plantuml-icon-font-sprites
 theme_options := -DTHEME_INCLUDE=$(DIR)/theme
