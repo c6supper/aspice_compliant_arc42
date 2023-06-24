@@ -188,7 +188,8 @@ thematic_break:
 description_list:
   term_font_style: italic
   description_indent: $horizontal_rhythm * 1.25
-outline_list:
+list:
+  text_align: left
   indent: $horizontal_rhythm * 1.5
   # NOTE item_spacing applies to list items that do not have complex content
   item_spacing: $vertical_rhythm / 2

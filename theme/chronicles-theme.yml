@@ -1,4 +1,8 @@
 extends: default
+description-list:
+  text_align: left
+list:
+  text_align: left
 role:
   love:
     font-color: E0245E
