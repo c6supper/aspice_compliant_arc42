@@ -11,80 +11,53 @@
 
     <!-- NOTE: "physical_partition" are listed in order and apply to UFS devices that have physical partitions -->
 
-    <!-- This is is LUN 0 - HLOS LUN" -->
+    <!-- This is LUN 0 - HLOS LUN" -->
+    <!-- NOTE: All partitions in LUN0 get overwritten by OS installer these are only used for FFU -->
     <physical_partition>
-        <partition label="ssd" size_in_kb="8" type="2C86E742-745E-4FDD-BFD8-B6A7AC638772" bootable="false" readonly="false" filename="" />
-        <partition label="misc" size_in_kb="1024" type="04600328-0CC3-47B8-8EF1-B192C39E3E1F" bootable="false" readonly="false" filename="" />
-        <partition label="keystore" size_in_kb="512" type="DE7D4029-0F5B-41C8-AE7E-F6C023A02B33" bootable="false" readonly="false" filename="" />
-        <partition label="frp" size_in_kb="512" type="91B72D4D-71E0-4CBF-9B8E-236381CFF17A" bootable="false" readonly="false" filename=""/>
+        <partition label="ssd"              size_in_kb="8"          type="2C86E742-745E-4FDD-BFD8-B6A7AC638772"     bootable="false"   readonly="false"     filename="" />
+        <partition label="vbmeta_a"         size_in_kb="64"         type="ca51803e-4d9a-4fa5-b8f1-f5fa05f20f89"     bootable="false"   readonly="true"      filename="host_vbmeta_la.img"/>
+        <partition label="system_a"         size_in_kb="3145728"    type="97D7B011-54DA-4835-B3C4-917AD6E73D74"     bootable="false"   readonly="false"     filename="system_la.img"/>
+        <partition label="ifs2_a"           size_in_kb="262144"     type="133e4a08-4def-11e6-beb8-9e71128cae77"     bootable="false"   readonly="true"      filename="ifs2_la.img"/>
+        <partition label="bluetooth_a"      size_in_kb="2048"       type="6cb747f1-c2ef-4092-add0-ca39f79c7af4"     bootable="false"   readonly="true"      filename="BTFM.bin"/>
+        <partition label="la_vbmeta_a"      size_in_kb="64"         type="4b7a15d6-322c-42ac-8110-88b7da0c5d77"     bootable="false"   readonly="true"      filename="vbmeta.img"/>
+        <partition label="la_boot_a"        size_in_kb="65536"      type="8E2F94FF-389A-4B97-A0D3-A13B5CEC7C36"     bootable="false"   readonly="false"     filename="boot.img"/>
+        <partition label="la_dtbo_a"        size_in_kb="8192"       type="24d0d418-d31d-4d8d-ac2c-4d4305188450"     bootable="false"   readonly="false"     filename=""/>
+        <partition label="la_vendor_boot_a" size_in_kb="65536"      type="8E2F94FF-389A-4B97-A0D3-A13B5ECE7C36"     bootable="false"   readonly="true"      filename="vendor_boot.img"/>
+        <partition label="la_persist"       size_in_kb="32768"      type="ac15448d-5948-4d1b-9309-f737870383d5"     bootable="false"   readonly="false"     filename="persist.img"/>
+        <partition label="vbmeta_mos_a"     size_in_kb="64"         type="62c7e992-fd44-fc4b-b19c-f4e298318ff9"     bootable="false"   readonly="true"      filename=""/>
+        <partition label="sys_mos_a"        size_in_kb="3145728"    type="756368f8-6673-354a-aac9-7b1518b637e5"     bootable="false"   readonly="false"     filename=""/>
+        <partition label="ifs2_mos_a"       size_in_kb="262144"     type="a2e4c57f-b7bc-8e44-aa15-cc2ae9d79795"     bootable="false"   readonly="true"      filename=""/>
+        <partition label="last_parti"       size_in_kb="0"          type="00000000-0000-0000-0000-000000000000"     system="true"      readonly="true"      filename="" />
+    </physical_partition>
 
-        <!-- QNX Host partitions -->
-		<partition label="boot_a" size_in_kb="65536" type="20117F86-E985-4357-B9EE-374BC1D8487D" bootable="false" readonly="false" filename="boot_la.img" />
-        <partition label="system_a" size_in_kb="2097152" type="3A065A51-80C6-4439-8602-79437023632A" bootable="false" readonly="false" filename="system_la.img" sparse="false"/>
-		<partition label="system_b" size_in_kb="2097152" type="3A065A51-80C6-4439-8602-79437023632A" bootable="false" readonly="false" filename="system_la.img" sparse="false"/>
-
-		<partition label="persist" size_in_kb="131072" type="6C95E238-E343-4BA8-B489-8681ED22AD0B" bootable="false" readonly="false" filename="persist_qnx.img" sparse="false"/>
-        <partition label="userdata" size_in_kb="204800" type="1B81E7E6-F50D-419B-A739-2AEEF8DA3335" bootable="false" readonly="false" filename="" sparse="true"/>
-		<partition label="firmware" size_in_kb="97280" type="B9717070-687C-4031-8FB2-DE225BA9E7B3" bootable="false" readonly="true" filename=""/>
-        <partition label="ifs2_a" size_in_kb="262144" type="133e4a08-4def-11e6-beb8-9e71128cae77" bootable="false" readonly="true" filename="ifs2_la.img"/>
-        <partition label="ifs2_b" size_in_kb="262144" type="133e4a08-4def-11e6-beb8-9e71128cae77" bootable="false" readonly="true" filename="ifs2_la.img"/>
-		<partition label="ifs2_recovery" size_in_kb="512000" type="2fd31ba9-afbd-4667-8356-4262fb4be317" bootable="false" readonly="true" filename="minios_la.img"/>
-
-		<!-- add for android image/dtb/ramdisk,  we prepare to A/B partition, each partiton size is 100MB -->
-		<partition label="android_boot_a" size_in_kb="65536" type="E8F2FCB6-4D53-4127-9281-005A8C9E9ADB" bootable="false" readonly="false" filename="android_image.img" sparse="false"/>
-		<partition label="android_boot_b" size_in_kb="65536" type="E8F2FCB6-4D53-4127-9281-005A8C9E9ADB" bootable="false" readonly="false" filename="android_image.img" sparse="false"/>
-		<!-- add  android and QNX shared  partition,  size is 8.5GB -->
-		<partition label="ota_update" size_in_kb="5242880" type="E6F5765D-A5F5-43C7-946F-2AF1F523A3A8" bootable="false" readonly="false" filename="" sparse="false"/>
-
-        <!-- Android Guest partitions  -->
-        <partition label="la_system_a" size_in_kb="4194304" type="9AD960EF-D2F7-48E3-9A9C-5970FE7D1BC6" bootable="false" readonly="false" filename="system.img" sparse="true"/>
-        <partition label="la_persist" size_in_kb="32768" type="ac15448d-5948-4d1b-9309-f737870383d5" bootable="false" readonly="false" filename="persist.img" sparse="false"/>
-        <partition label="la_vendor_a" size_in_kb="1572864" type="97D7B011-54DA-4835-B3C4-917AD6E73D74" bootable="false" readonly="true" filename="vendor.img" sparse="true"/>
-		<partition label="la_firmware_a" size_in_kb="97280" type="76C92C11-64C7-4000-AFD8-41008365A207" bootable="false" readonly="true" filename=""/>
-
-
-	<!-- Android Guest partitions  -->
-        <partition label="la_system_b" size_in_kb="4194304" type="9AD960EF-D2F7-48E3-9A9C-5970FE7D1BC6" bootable="false" readonly="false" filename="system.img" sparse="true"/>
-        <partition label="la_vendor_b" size_in_kb="1572864" type="97D7B011-54DA-4835-B3C4-917AD6E73D74" bootable="false" readonly="true" filename="vendor.img" sparse="true"/>
-		<partition label="la_firmware_b" size_in_kb="97280" type="76C92C11-64C7-4000-AFD8-41008365A207" bootable="false" readonly="true" filename=""/>
-		<partition label="la_misc" size_in_kb="1024" type="82ACC91F-357C-4A68-9C8F-689E1B1A23A1" bootable="false" readonly="false" filename="" />
-		<partition label="navi_buffer" size_in_kb="18874368" type="3c727a0a-de2d-48ae-8e3d-49459228e8a4" bootable="false" readonly="false" filename="navi_buffer.img" sparse="true"/>
-		<partition label="log_data" size_in_kb="1048576" type="1ecda445-d041-45a7-91ab-a7ed4f2c14a9" bootable="false" readonly="false" filename="log_data.img" sparse="true"/>
-		<partition label="vr_tts" size_in_kb="2097152" type="004ecc9a-8fce-4012-8473-805dbad35801" bootable="false" readonly="false" filename="vr.img" sparse="true"/>
-		<partition label="encryption" size_in_kb="8192" type="8d48880e-f743-4e1b-89a6-4cf60a51b541" bootable="false" readonly="false" filename="encryption.img" sparse="true"/>
-		<partition label="appcfg" size_in_kb="512000" type="980e238d-109d-431c-af35-40a0adb3f349" bootable="false" readonly="false" filename="appcfg.img" sparse="true"/>
-		<partition label="bvims" size_in_kb="1048576" type="9505014c2-75a4-43f9-9542-99b9532453ca" bootable="false" readonly="false" filename="bvims.img" sparse="false"/>
-		<partition label="fw_cache" size_in_kb="20480" type="0ea6b7b3-da66-4621-9507-44fc418d196d" bootable="false" readonly="false" filename="" sparse="false"/>
-		<partition label="game_data" size_in_kb="1048576" type="e503e5a8-1e3e-4374-a537-b9c6030f7602" bootable="false" readonly="false" filename="gamedata.img" sparse="true"/>
-		<partition label="la_userdata" size_in_kb="11010048" type="6E6D4ADD-DD73-4D05-AE54-2CD16925DD65" bootable="false" readonly="false" filename="userdata.img" sparse="true"/>
-		<partition label="qnx_share" size_in_kb="2711552" type="f000d6ad-435a-4526-a28f-c5bc362c7058" bootable="false" readonly="false" filename="" sparse="false"/>
-		<!--partition label="last_parti" size_in_kb="0" type="00000000-0000-0000-0000-000000000000" bootable="false" readonly="true" filename="" /> -->
-	</physical_partition>
 
     <!-- This is LUN 1 - Boot LUN A" -->
     <physical_partition>
-        <partition label="xbl_a" size_in_kb="3584" type="DEA0BA2C-CBDD-4805-B4F9-F428251C3E98" bootable="false" readonly="true" filename="xbl.elf"/>
-        <partition label="xbl_config_a" size_in_kb="128" type="5A325AE4-4276-B66D-0ADD-3494DF27706A" bootable="false" readonly="false" filename="xbl_config.elf"/>
-        <partition label="xbl_config_recovery" size_in_kb="128" type="A4CDBB5A-5A73-436E-B129-689EC01DBFE3" bootable="false" readonly="false" filename="xbl_config.elf"/>
-        <partition label="last_parti" size_in_kb="0" type="00000000-0000-0000-0000-000000000000" bootable="false" readonly="true" filename="" />
+        <partition label="xbl_a"         size_in_kb="5120"       type="DEA0BA2C-CBDD-4805-B4F9-F428251C3E98"     system="true"                          filename="xbl.elf"/>
+        <partition label="xbl_bkup_a"    size_in_kb="5120"       type="7A3DF1A3-A31A-454D-BD78-DF259ED486BE"     system="true"                          filename="xbl.elf"/>
+        <partition label="xbl_config_a"  size_in_kb="224"        type="5A325AE4-4276-B66D-0ADD-3494DF27706A"     system="true"                          filename="xbl_config.elf"/>
+        <partition label="smss_a"        size_in_kb="1536"       type="DF2E6DD2-296D-4CAA-867B-2E92E2F9B6C3"     system="true"                          filename="smss.elf"/>
+        <partition label="last_parti"    size_in_kb="0"          type="00000000-0000-0000-0000-000000000000"     system="true"     readonly="true"      filename=""/>
     </physical_partition>
 
     <!-- This is LUN 2 - Boot LUN B" -->
     <physical_partition>
-        <partition label="xbl_b" size_in_kb="3584" type="DEA0BA2C-CBDD-4805-B4F9-F428251C3E98" bootable="false" readonly="true" filename="xbl.elf"/>
-		<partition label="xbl_config_b" size_in_kb="128" type="5A325AE4-4276-B66D-0ADD-3494DF27706A" bootable="false" readonly="false" filename="xbl_config.elf"/>
-        <partition label="xbl_config_recovery" size_in_kb="128" type="A4CDBB5A-5A73-436E-B129-689EC01DBFE3" bootable="false" readonly="false" filename="xbl_config.elf"/>
-        <partition label="last_parti" size_in_kb="0" type="00000000-0000-0000-0000-000000000000" bootable="false" readonly="true" filename="" />
+        <partition label="xbl_b"         size_in_kb="5120"       type="DEA0BA2C-CBDD-4805-B4F9-F428251C3E98"     system="true"                          filename="xbl.elf"/>
+        <partition label="xbl_bkup_b"    size_in_kb="5120"       type="7A3DF1A3-A31A-454D-BD78-DF259ED486BE"     system="true"                          filename="xbl.elf"/>
+        <partition label="xbl_config_b"  size_in_kb="224"        type="A4CDBB5A-5A73-436E-B129-689EC01DBFE3"     system="true"                          filename="xbl_config.elf"/>
+        <partition label="smss_b"        size_in_kb="1536"       type="FDF56B51-D67E-4081-A4E2-975A0997200D"     system="true"                          filename="smss.elf"/>
+        <partition label="last_parti"    size_in_kb="0"          type="00000000-0000-0000-0000-000000000000"     system="true"     readonly="true"      filename="" />
     </physical_partition>
 
     <!-- This is LUN 3 - OTP LUN" -->
     <!-- QCOM development requirement: Ensure all partitions in LUN3 is a multiple of 128k
          Linux Android customers can ignore this requirement -->
     <physical_partition>
-        <partition label="ALIGN_TO_128K_1" size_in_kb="104" type="FDE1604B-D68B-4BD4-973D-962AE7A1ED88" bootable="false" readonly="true" />
-        <partition label="cdt" size_in_kb="128" type="A19F205F-CCD8-4B6D-8F1E-2D9BC24CFFB1" bootable="false" readonly="true" filename="cdt.bin" />
-        <partition label="ddr" size_in_kb="1024" type="20A0C19C-286A-42FA-9CE7-F64C3226A794" bootable="false" readonly="true"/>
-        <partition label="last_parti" size_in_kb="0" type="00000000-0000-0000-0000-000000000000" bootable="false" readonly="true" filename="" />
+        <partition label="ALIGN_TO_128K_1"  size_in_kb="104"     type="50d0abe4-f594-4641-981b-df602e400f34"     system="true"     readonly="true"/>
+        <partition label="cdt"              size_in_kb="16384"   type="A19F205F-CCD8-4B6D-8F1E-2D9BC24CFFB1"     system="true"                           filename=""/>
+        <partition label="ddr"              size_in_kb="800"     type="20A0C19C-286A-42FA-9CE7-F64C3226A794"     system="true"                           filename=""/>
+        <partition label="oemcfg"           size_in_kb="2048"    type="FC32BEF1-5BFE-8543-8C42-F3D2EDA58461"     system="true"     bootable="false"      readonly="true"     filename=""/>
+        <partition label="last_parti"       size_in_kb="0"       type="00000000-0000-0000-0000-000000000000"     system="true"     readonly="true"       filename="" />
     </physical_partition>
 
    <!-- This is LUN 4 - Protected Read-only LUN" -->
@@ -92,77 +65,136 @@
         <!-- These are the 'A' partition's needed for the A/B boot/ota update feature. If you add something to this section remember to add it to B as well
         Partition's that are expected to be OTA upgradable require a A and B version. If the partition you are adding is not expected to be OTA upgradable
         please add it after the 'B' partition list. If you do need to add a OTA upgradable partition please notify the linux team as well." -->
-        <partition label="aop_a" size_in_kb="512" type="D69E90A5-4CAB-0071-F6DF-AB977F141A7F" bootable="false" readonly="true" filename="aop.mbn"/>
-        <partition label="aop_recovery" size_in_kb="512" type="B8B27C4C-4B5B-8AB2-502F-A792B590A896" bootable="false" readonly="true" filename="aop.mbn"/>
-        <partition label="tz_a" size_in_kb="4096" type="A053AA7F-40B8-4B1C-BA08-2F68AC71A4F4" bootable="false" readonly="true" filename="tz.mbn"/>
-        <partition label="tz_recovery" size_in_kb="4096" type="C832EA16-8B0D-4398-A67B-EBB30EF98E7E" bootable="false" readonly="true" filename="tz.mbn"/>
-        <partition label="hyp_a" size_in_kb="7168" type="E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A" bootable="false" readonly="false" filename="mifs_hyp_la.img"/>
-        <partition label="hyp_recovery" size_in_kb="7168" type="3D3E3AD2-8FF3-4975-A7E7-0E8A10B69F0D" bootable="false" readonly="false" filename="mifs_hyp_minios_la.img"/>
-        <partition label="modem_a" size_in_kb="174080" type="EBD0A0A2-B9E5-4433-87C0-68B6B72699C7" bootable="false" readonly="true" filename="NON-HLOS.bin"/>
-        <partition label="bluetooth_a" size_in_kb="2048" type="6cb747f1-c2ef-4092-add0-ca39f79c7af4" bootable="false" readonly="true" filename="BTFM.bin"/>
-        <partition label="mdtpsecapp_a" size_in_kb="4096" type="EA02D680-8712-4552-A3BE-E6087829C1E6" bootable="false" readonly="true" filename="" />
-        <partition label="mdtp_a" size_in_kb="32768" type="3878408A-E263-4B67-B878-6340B35B11E3" bootable="false" readonly="true" filename=""/>
-        <partition label="abl_a" size_in_kb="1024" type="BD6928A1-4CE0-A038-4F3A-1495E3EDDFFB" bootable="false" readonly="true" filename="abl_fastboot.elf"/>
-        <partition label="dsp_a" size_in_kb="65536" type="7EFE5010-2A1A-4A1A-B8BC-990257813512" bootable="false" readonly="true" filename="dspso.bin"/>
-        <partition label="keymaster_a" size_in_kb="512" type="A11D2A7C-D82A-4C2F-8A01-1805240E6626" bootable="false" readonly="true" filename="km4virt.mbn"/>
-        <partition label="cmnlib_a" size_in_kb="512" type="73471795-AB54-43F9-A847-4F72EA5CBEF5" bootable="false" readonly="true" filename="cmnlib.mbn"/>
-        <partition label="cmnlib64_a" size_in_kb="512" type="8EA64893-1267-4A1B-947C-7C362ACAAD2C" bootable="false" readonly="true" filename="cmnlib64.mbn"/>
-        <partition label="devcfg_a" size_in_kb="128" type="F65D4B16-343D-4E25-AAFC-BE99B6556A6D" bootable="false" readonly="false" filename="devcfg_auto.mbn"/>
-        <partition label="devcfg_recovery" size_in_kb="128" type="4E820A31-17E3-447D-B32D-FB339F7EA1A2" bootable="false" readonly="false" filename="devcfg_auto.mbn"/>
-        <partition label="qupfw_a" size_in_kb="76" type="21d1219f-2ed1-4ab4-930a-41a16ae75f7f" bootable="false" readonly="false" filename="qupv3fw.elf"/>
-        <partition label="vbmeta_a" size_in_kb="64" type="4b7a15d6-322c-42ac-8110-88b7da0c5d77" bootable="false" readonly="true" filename=""/>
-        <partition label="dtbo_a" size_in_kb="24576" type="24d0d418-d31d-4d8d-ac2c-4d4305188450" bootable="false" readonly="false" filename=""/>
-        <partition label="uefisecapp_a" size_in_kb="2048" type="BE8A7E08-1B7A-4CAE-993A-D5B7FB55B3C2" bootable="false" readonly="false" filename="uefi_sec.mbn"/>
-        <!-- These are the 'B' partition's needed for the A/B boot/ota update feature. A and B partitions must have differrent GUID's. For convenience sake
-         we keep all the B partitions with the same GUID" -->
-        <partition label="aop_b" size_in_kb="512" type="D69E90A5-4CAB-0071-F6DF-AB977F141A7F" bootable="false" readonly="true" filename="aop.mbn"/>
-        <partition label="tz_b" size_in_kb="4096" type="A053AA7F-40B8-4B1C-BA08-2F68AC71A4F4" bootable="false" readonly="true" filename="tz.mbn"/>
-        <partition label="hyp_b" size_in_kb="7168" type="E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A" bootable="false" readonly="false" filename="mifs_hyp_la.img"/>
-        <partition label="modem_b" size_in_kb="174080" type="EBD0A0A2-B9E5-4433-87C0-68B6B72699C7" bootable="false" readonly="true" filename="NON-HLOS.bin"/>
-        <partition label="bluetooth_b" size_in_kb="2048" type="6cb747f1-c2ef-4092-add0-ca39f79c7af4" bootable="false" readonly="true" filename="BTFM.bin"/>
-        <partition label="mdtpsecapp_b" size_in_kb="4096" type="EA02D680-8712-4552-A3BE-E6087829C1E6" bootable="false" readonly="true" filename=""/>
-        <partition label="mdtp_b" size_in_kb="32768" type="3878408A-E263-4B67-B878-6340B35B11E3" bootable="false" readonly="true" filename=""/>
-        <partition label="abl_b" size_in_kb="1024" type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34" bootable="false" readonly="true" filename="abl_fastboot.elf"/>
-        <partition label="dsp_b" size_in_kb="65536" type="7EFE5010-2A1A-4A1A-B8BC-990257813512" bootable="false" readonly="true" filename="dspso.bin"/>
-        <partition label="keymaster_b" size_in_kb="512" type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34" bootable="false" readonly="true" filename="km4virt.mbn"/>
-		<partition label="boot_b" size_in_kb="65536" type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34" bootable="false" readonly="false" filename=""/>
-        <partition label="cmnlib_b" size_in_kb="512" type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34" bootable="false" readonly="true" filename="cmnlib.mbn"/>
-        <partition label="cmnlib64_b" size_in_kb="512" type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34" bootable="false" readonly="true" filename="cmnlib64.mbn"/>
-        <partition label="devcfg_b" size_in_kb="128" type="F65D4B16-343D-4E25-AAFC-BE99B6556A6D" bootable="false" readonly="false" filename="devcfg_auto.mbn"/>
-        <partition label="qupfw_b" size_in_kb="76" type="21d1219f-2ed1-4ab4-930a-41a16ae75f7f" bootable="false" readonly="false" filename="qupv3fw.elf"/>
-        <partition label="vbmeta_b" size_in_kb="64" type="4b7a15d6-322c-42ac-8110-88b7da0c5d77" bootable="false" readonly="true" filename=""/>
-        <partition label="dtbo_b" size_in_kb="24576" type="24d0d418-d31d-4d8d-ac2c-4d4305188450" bootable="false" readonly="false" filename="" />
-        <partition label="uefisecapp_b" size_in_kb="2048" type="BE8A7E08-1B7A-4CAE-993A-D5B7FB55B3C2" bootable="false" readonly="false" filename="uefi_sec.mbn"/>
-        <!-- These are non A/B partitions. In a A/B build these would not be updated via a OTA update -->
-        <!-- <partition label="sec" size_in_kb="16" type="303E6AC3-AF15-4C54-9E9B-D9A8FBECF401" bootable="false" readonly="true" filename="sec.dat" /> -->
-        <partition label="devinfo" size_in_kb="4" type="65ADDCF4-0C5C-4D9A-AC2D-D90B5CBFCD03" bootable="false" readonly="true" filename=""/>
-		<partition label="emac" size_in_kb="512" type="e7e5eff9-d224-4eb3-8f0b-1d2a4be18665" bootable="false" readonly="false" filename=""/>
-        <partition label="dip" size_in_kb="1024" type="4114B077-005D-4E12-AC8C-B493BDA684FB" bootable="false" readonly="true" filename=""/>
-        <partition label="apdp" size_in_kb="256" type="E6E98DA2-E22A-4D12-AB33-169E7DEAA507" bootable="false" readonly=" false" filename=""/>
-        <partition label="msadp" size_in_kb="256" type="ED9E8101-05FA-46B7-82AA-8D58770D200B" bootable="false" readonly="false" filename=""/>
-        <partition label="spunvm" size_in_kb="8192" type="e42e2b4c-33b0-429b-b1ef-d341c547022c" bootable="false" readonly="false" filename=""/>
-        <partition label="splash" size_in_kb="33424" type="AD99F201-DC71-4E30-9630-E19EEF553D1B" bootable="false" readonly="false" filename=""/>
-        <partition label="limits" size_in_kb="4" type="10A0C19C-516A-5444-5CE3-664C3226A794" bootable="false" readonly="true"/>
-        <partition label="toolsfv" size_in_kb="1024" type="97745ABA-135A-44C3-9ADC-05616173C24C" bootable="false" readonly="true"/>
-        <partition label="logfs" size_in_kb="8192" type="BC0330EB-3410-4951-A617-03898DBE3372" bootable="false" readonly="false" filename="logfs_ufs_8mb.bin"/>
-        <partition label="cateloader" size_in_kb="2048" type="AA9A5C4C-4F1F-7D3A-014A-22BD33BF7191" bootable="false" readonly="false" filename=""/>
-        <partition label="logdump" size_in_kb="65536" type="5AF80809-AABB-4943-9168-CDFC38742598" readonly="false" bootable="false" filename=""/>
-        <partition label="storsec" size_in_kb="128" type="02DB45FE-AD1B-4CB6-AECC-0042C637DEFA" bootable="false" readonly="true" filename="storsec.mbn"/>
-        <partition label="multiimgoem" size_in_kb="32" type="E126A436-757E-42D0-8D19-0F362F7A62B8" bootable="false" readonly="true" filename=""/>
-        <partition label="multiimgqti" size_in_kb="32" type="846C6F05-EB46-4C0A-A1A3-3648EF3F9D0E" bootable="false" readonly="true" filename=""/>
-		<partition label="uefivarstore" size_in_kb="512" type="165BD6BC-9250-4AC8-95A7-A93F4A440066" bootable="false" readonly="true" filename=""/>
-        <!--<partition label="fmac" size_in_kb="25" type="465ab28f-8906-4591-ba29-f60e684ed76e" bootable="false" readonly="true" filename="fmac.mbn"/>-->
-        <partition label="secdata" size_in_kb="28" type="76cfc7ef-039d-4e2c-b81e-4dd8c2cb2a93" bootable="false" readonly="true" filename="sec.dat"/>
-        <partition label="catefv" size_in_kb="512" type="80c23c26-c3f9-4a19-bb38-1e457daceb09" bootable="false" readonly="true"/>
-        <partition label="catecontentfv" size_in_kb="1024" type="e12d830b-7f62-4f0b-b48a-8178c5bf3ac1" bootable="false" readonly="true"/>
-        <partition label="last_parti" size_in_kb="0" type="00000000-0000-0000-0000-000000000000" bootable="false" readonly="true" filename="" />
+        <partition label="aop_a"          size_in_kb="256"        type="D69E90A5-4CAB-0071-F6DF-AB977F141A7F"     bootable="false"     readonly="true"     filename="aop.mbn"/>
+        <partition label="tz_a"           size_in_kb="4000"       type="A053AA7F-40B8-4B1C-BA08-2F68AC71A4F4"     bootable="false"     readonly="true"     filename="tz.mbn"/>
+        <partition label="hyp_a"          size_in_kb="65536"      type="E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A"     bootable="false"     readonly="false"    filename="mifs_hyp_la.img"/>
+        <partition label="TZAPPS"         size_in_kb="320"        type="14D11C40-2A3D-4F97-882D-103A1EC09333"     system="true"                            filename=""/>
+        <partition label="modem_a"        size_in_kb="184320"     type="EBD0A0A2-B9E5-4433-87C0-68B6B72699C7"     bootable="false"     readonly="true"     filename="NON-HLOS.bin"/>
+        <partition label="core_nhlos_a"   size_in_kb="122880"     type="6690B4CE-70E9-4817-B9F1-25D64D888357"     system="true"                            filename=""/>
+        <partition label="mdtpsecapp_a"   size_in_kb="4096"       type="EA02D680-8712-4552-A3BE-E6087829C1E6"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="mdtp_a"         size_in_kb="32768"      type="3878408A-E263-4B67-B878-6340B35B11E3"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="abl_a"          size_in_kb="1024"       type="BD6928A1-4CE0-A038-4F3A-1495E3EDDFFB"     bootable="false"     readonly="true"     filename="abl_fastboot.elf"/>
+        <partition label="dsp_a"          size_in_kb="65536"      type="7EFE5010-2A1A-4A1A-B8BC-990257813512"     bootable="false"     readonly="true"     filename="dspso.bin"/>
+        <partition label="boot_a"         size_in_kb="65536"      type="20117F86-E985-4357-B9EE-374BC1D8487D"     bootable="false"     readonly="false"    filename="boot_la.img"/>
+        <partition label="cmnlib_a"       size_in_kb="512"        type="73471795-AB54-43F9-A847-4F72EA5CBEF5"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="cmnlib64_a"     size_in_kb="1024"       type="8EA64893-1267-4A1B-947C-7C362ACAAD2C"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="devcfg_a"       size_in_kb="128"        type="F65D4B16-343D-4E25-AAFC-BE99B6556A6D"     bootable="false"     readonly="false"    filename="devcfg_auto.mbn"/>
+        <partition label="qupfw_a"        size_in_kb="128"        type="21d1219f-2ed1-4ab4-930a-41a16ae75f7f"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="dtbo_a"         size_in_kb="24576"      type="24d0d418-d31d-4d8d-ac2c-4d4305188450"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="cpucp_a"        size_in_kb="1024"       type="1E8615BD-6D8C-41AD-B3EA-50E8BF40E43F"     bootable="false"     readonly="false"    filename="cpucp.elf"/>
+        <partition label="apdp_a"         size_in_kb="64"         type="E6E98DA2-E22A-4D12-AB33-169E7DEAA507"     system="true"                            filename=""/>
+        <partition label="multiimgoem_a"  size_in_kb="32"         type="E126A436-757E-42D0-8D19-0F362F7A62B8"     bootable="false"     readonly="true"     filename="multi_image.mbn"/>
+        <partition label="imagefv_a"      size_in_kb="1024"       type="17911177-C9E6-4372-933C-804B678E666F"     bootable="false"     readonly="true"     filename="imagefv.elf"/>
+        <partition label="shrm_a"         size_in_kb="80"         type="CB74CA22-2F0D-4B82-A1D6-C4213F348D73"     bootable="false"     readonly="true"     filename="shrm.elf"/>
+        <partition label="usb4fw_a"       size_in_kb="61"         type="3FA03C7A-9FDC-498B-A2A8-DE11EE339790"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="devinfo"        size_in_kb="4"          type="65ADDCF4-0C5C-4D9A-AC2D-D90B5CBFCD03"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="dip"            size_in_kb="1024"       type="4114B077-005D-4E12-AC8C-B493BDA684FB"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="spunvm"         size_in_kb="8192"       type="e42e2b4c-33b0-429b-b1ef-d341c547022c"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="splash"         size_in_kb="33424"      type="AD99F201-DC71-4E30-9630-E19EEF553D1B"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="limits"         size_in_kb="4"          type="10A0C19C-516A-5444-5CE3-664C3226A794"     bootable="false"     readonly="true"/>
+        <partition label="logfs"          size_in_kb="8192"       type="BC0330EB-3410-4951-A617-03898DBE3372"     bootable="false"     readonly="false"    filename="logfs_ufs_8mb.bin"/>
+        <partition label="emac"           size_in_kb="512"        type="e7e5eff9-d224-4eb3-8f0b-1d2a4be18665"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="uefivarstore"   size_in_kb="512"        type="165BD6BC-9250-4AC8-95A7-A93F4A440066"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="secdata"        size_in_kb="128"        type="76cfc7ef-039d-4e2c-b81e-4dd8c2cb2a93"     system="true"                            filename=""/>
+        <partition label="toolsfv"        size_in_kb="1024"       type="97745ABA-135A-44C3-9ADC-05616173C24C"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="softsku"        size_in_kb="8"          type="69cfd37f-3d6b-48ed-9739-23015606be65"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="hyp_mos_a"      size_in_kb="65536"      type="9b2beb31-b0ab-6343-8caa-cd5b5d24e699"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="abl_mos_a"      size_in_kb="1024"       type="a92f78f9-a02d-5649-9769-58f583ac51e2"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="mos_boot_a"     size_in_kb="65536"      type="d597ae98-7278-db42-a213-27bf9067bf4a"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="last_parti"     size_in_kb="0"          type="00000000-0000-0000-0000-000000000000"     bootable="false"     readonly="true"     filename="" />
+
     </physical_partition>
 
     <!-- This is LUN 5 - Protected Read-write LUN" -->
     <!-- QCOM development requirement: Ensure all partitions in LUN5 is a multiple of 128k.
          Linux Android customers can ignore this requirement -->
     <physical_partition>
-        <partition label="ALIGN_TO_128K_2" size_in_kb="104" type="6891a3b7-0ccc-4705-bb53-2673cac193bd" bootable="false" readonly="true" />
-		<partition label="last_parti" size_in_kb="0" type="00000000-0000-0000-0000-000000000000" bootable="false" readonly="true" filename="" />
+
+        <partition label="ALIGN_TO_128K_2" size_in_kb="104"       type="6891a3b7-0ccc-4705-bb53-2673cac193bd"     bootable="false"     readonly="true" />
+        <!-- These are the 'B' partition's needed for the A/B boot/ota update feature. A and B partitions must have differrent GUID's. For convinience sake
+         we keep all the B partitions with the same GUID" -->
+        <partition label="aop_b"          size_in_kb="256"        type="B8B27C4C-4B5B-8AB2-502F-A792B590A896"     bootable="false"     readonly="false"     filename="aop.mbn"/>
+        <partition label="tz_b"           size_in_kb="4000"       type="C832EA16-8B0D-4398-A67B-EBB30EF98E7E"     bootable="false"     readonly="false"     filename="tz.mbn"/>
+        <partition label="hyp_b"          size_in_kb="65536"      type="3D3E3AD2-8FF3-4975-A7E7-0E8A10B69F0D"     bootable="false"     readonly="false"     filename="mifs_hyp_la.img"/>
+        <partition label="BACKUP_TZAPPS"  size_in_kb="320"        type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     system="true"                             filename=""/>
+        <partition label="modem_b"        size_in_kb="184320"     type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename="NON-HLOS.bin"/>
+        <partition label="core_nhlos_b"   size_in_kb="122880"     type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     system="true"                             filename=""/>
+        <partition label="mdtpsecapp_b"   size_in_kb="4096"       type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename=""/>
+        <partition label="mdtp_b"         size_in_kb="32768"      type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename=""/>
+        <partition label="abl_b"          size_in_kb="1024"       type="0FFB67A4-7A7F-4D08-BBF5-E20A8A68560B"     bootable="false"     readonly="true"      filename="abl_fastboot.elf"/>
+        <partition label="dsp_b"          size_in_kb="65536"      type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename="dspso.bin"/>
+        <partition label="boot_b"         size_in_kb="65536"      type="20117F86-E985-4357-B9EE-374BC1D8487D"     bootable="false"     readonly="false"     filename="boot_la.img"/>
+        <partition label="cmnlib_b"       size_in_kb="512"        type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename=""/>
+        <partition label="cmnlib64_b"     size_in_kb="1024"       type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename=""/>
+        <partition label="devcfg_b"       size_in_kb="128"        type="4E820A31-17E3-447D-B32D-FB339F7EA1A2"     bootable="false"     readonly="false"     filename="devcfg_auto.mbn"/>
+        <partition label="qupfw_b"        size_in_kb="128"        type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="false"     filename=""/>
+        <partition label="dtbo_b"         size_in_kb="24576"      type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="false"     filename=""/>
+        <partition label="cpucp_b"        size_in_kb="1024"       type="6C1111FB-5354-41DE-AC17-5B6E542BE836"     bootable="false"     readonly="false"     filename="cpucp.elf"/>
+        <partition label="apdp_b"         size_in_kb="64"         type="110F198D-8174-4193-9AF1-5DA94CDC59C9"     system="true"                             filename=""/>
+        <partition label="multiimgoem_b"  size_in_kb="32"         type="3E3E3ECD-C512-4F95-9144-6063826A8970"     bootable="false"     readonly="true"      filename="multi_image.mbn"/>
+        <partition label="imagefv_b"      size_in_kb="1024"       type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename="imagefv.elf"/>
+        <partition label="shrm_b"         size_in_kb="80"         type="39FD6C00-49EB-6BD1-6899-2FB849DD4F75"     bootable="false"     readonly="true"      filename="shrm.elf"/>
+        <partition label="usb4fw_b"       size_in_kb="61"         type="77036CD4-03D5-42BB-8ED1-37E5A88BAA34"     bootable="false"     readonly="true"      filename=""/>
+        <partition label="hyp_mos_b"      size_in_kb="65536"      type="9b2beb31-b0ab-6343-8caa-cd5b5d24e699"     bootable="false"     readonly="false"     filename=""/>
+        <partition label="abl_mos_b"      size_in_kb="1024"       type="a92f78f9-a02d-5649-9769-58f583ac51e2"     bootable="false"     readonly="true"      filename=""/>
+        <partition label="mos_boot_b"     size_in_kb="65536"      type="d597ae98-7278-db42-a213-27bf9067bf4a"     bootable="false"     readonly="false"     filename=""/>
+        <partition label="last_parti"     size_in_kb="0"          type="00000000-0000-0000-0000-000000000000"     bootable="false"     readonly="true"      filename="" />
+        <!-- These are non A/B partitions. In a A/B build these would not be updated via a OTA update -->
     </physical_partition>
+
+    <!-- This is LUN 6 - Protected Read-write LUN" -->
+    <!-- QCOM development requirement: Ensure all partitions in LUN5 is a multiple of 128k.
+         ****Linux Android customers can ignore this requirement ****-->
+    <physical_partition>
+
+        <partition label="ALIGN_TO_128K_3"  size_in_kb="104"        type="fa50cd9e-5dcb-4528-9b5f-ab876efd4580"     bootable="false"     readonly="true" />
+        <partition label="ifs2_b"           size_in_kb="262144"     type="133e4a08-4def-11e6-beb8-9e71128cae77"     bootable="false"     readonly="true"     filename="ifs2_la.img"/>
+        <partition label="system_b"         size_in_kb="3145728"    type="97D7B011-54DA-4835-B3C4-917AD6E73D74"     bootable="false"     readonly="false"    filename="system_la.img"/>
+        <partition label="vbmeta_b"         size_in_kb="64"         type="ca51803e-4d9a-4fa5-b8f1-f5fa05f20f89"     bootable="false"     readonly="true"     filename="host_vbmeta_la.img"/>
+        <partition label="la_vbmeta_b"      size_in_kb="64"         type="4b7a15d6-322c-42ac-8110-88b7da0c5d77"     bootable="false"     readonly="true"     filename="vbmeta.img"/>
+        <partition label="la_boot_b"        size_in_kb="65536"      type="8E2F94FF-389A-4B97-A0D3-A13B5CEC7C36"     bootable="false"     readonly="false"    filename="boot.img"/>
+        <partition label="la_dtbo_b"        size_in_kb="8192"       type="24d0d418-d31d-4d8d-ac2c-4d4305188450"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="la_vendor_boot_b" size_in_kb="65536"      type="8E2F94FF-389A-4B97-A0D3-A13B5ECE7C36"     bootable="false"     readonly="true"     filename="vendor_boot.img"/>
+        <partition label="la_misc"          size_in_kb="1024"       type="82ACC91F-357C-4A68-9C8F-689E1B1A23A1"     bootable="false"     readonly="false"    filename="" />
+        <partition label="bluetooth_b"      size_in_kb="2048"       type="6cb747f1-c2ef-4092-add0-ca39f79c7af4"     bootable="false"     readonly="true"     filename="BTFM.bin"/>
+        <partition label="vbmeta_mos_b"     size_in_kb="64"         type="62c7e992-fd44-fc4b-b19c-f4e298318ff9"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="sys_mos_b"        size_in_kb="3145728"    type="756368f8-6673-354a-aac9-7b1518b637e5"     bootable="false"     readonly="false"    filename=""/>
+        <partition label="ifs2_mos_b"       size_in_kb="262144"     type="a2e4c57f-b7bc-8e44-aa15-cc2ae9d79795"     bootable="false"     readonly="true"     filename=""/>
+        <partition label="last_parti"       size_in_kb="0"          type="00000000-0000-0000-0000-000000000000"     bootable="false"     readonly="true"     filename=""/>
+    </physical_partition>
+
+
+    <!-- This is LUN 7 - Protected Read-write LUN" -->
+    <!-- QCOM development requirement: Ensure all partitions in LUN5 is a multiple of 128k.
+         ****Linux Android customers can ignore this requirement ****-->
+    <physical_partition>
+
+        <partition label="ALIGN_TO_128K_4"  size_in_kb="104"        type="0f496734-3e5c-4f65-a510-7260a409942a"     bootable="false"    readonly="true"/>
+        <partition label="rawdump"          size_in_kb="631072"     type="66C9B323-F7FC-48B6-BF96-6F32E335A428"     bootable="false"    readonly="false"     filename=""/>
+        <partition label="logdump"          size_in_kb="524288"     type="5AF80809-AABB-4943-9168-CDFC38742598"     system="true"                            filename=""/>
+        <partition label="persist"          size_in_kb="32768"      type="6C95E238-E343-4BA8-B489-8681ED22AD0B"     bootable="false"    readonly="false"     filename="persist_qnx.img"/>
+        <partition label="misc"             size_in_kb="1024"       type="82ACC91F-357C-4A68-9C8F-689E1B1A23A1"     bootable="false"    readonly="false"     filename="" />
+        <partition label="la_metadata"      size_in_kb="16384"      type="988A98C9-2910-4123-AAEC-1CF6B1BC28F9"     bootable="false"    readonly="false"     filename="metadata.img"    sparse="true"/>
+        <partition label="la_firmware"      size_in_kb="97280"      type="76C92C11-64C7-4000-AFD8-41008365A207"     bootable="false"    readonly="true"      filename=""/>
+        <partition label="recoveryinfo"     size_in_kb="4"          type="7374B391-291C-49FA-ABC2-0463AB5F713F"     system="true"                            filename="empty_4K.bin"/>
+        <partition label="persist_mos"      size_in_kb="32768"      type="a5222e14-cb79-7a41-b63d-80d1abf7a2a1"     bootable="false"    readonly="false"     filename=""/>
+        <partition label="qnxres_a"         size_in_kb="6291456"    type="b1fc1000-ae15-480e-9efe-55e721765526"     bootable="false"    readonly="ture"      filename="qnxres.img"/>
+        <partition label="qnxres_b"         size_in_kb="6291456"    type="b1fc1000-ae15-480e-9efe-55e721765526"     bootable="false"    readonly="ture"      filename="qnxres.img"/>
+        <partition label="cluster_a"        size_in_kb="1048576"    type="6254D29D-671D-476E-8065-44A3977F9452"     bootable="false"    readonly="true"      filename="cluster.img"/>
+        <partition label="cluster_b"        size_in_kb="1048576"    type="6254D29D-671D-476E-8065-44A3977F9452"     bootable="false"    readonly="true"      filename="cluster.img"/>
+        <partition label="userdata"         size_in_kb="6711296"    type="1B81E7E6-F50D-419B-A739-2AEEF8DA3335"     bootable="false"    readonly="false"     filename=""                sparse="true"/>
+        <partition label="vims"             size_in_kb="1048576"    type="eb235cff-71e2-4125-9c98-fe2e68237add"     bootable="false"    readonly="false"     filename=""                sparse="false"/>
+        <partition label="la_predata"       size_in_kb="1024"       type="c14f5476-7f00-4147-b648-758d88826565"     bootable="false"    readonly="false"     filename=""                sparse="true"/>
+        <partition label="log_data"         size_in_kb="2097152"    type="1ecda445-d041-45a7-91ab-a7ed4f2c14a9"     bootable="false"    readonly="false"     filename="log_data.img"    sparse="true"/>
+        <partition label="la_super"         size_in_kb="15728640"   type="89A12DE1-5E41-4CB3-8B4C-B1441EB5DA38"     bootable="false"    readonly="false"     filename="super.img"       sparse="true"/>
+        <partition label="la_userdata"      size_in_kb="73400320"   type="6E6D4ADD-DD73-4D05-AE54-2CD16925DD65"     bootable="false"    readonly="false"     filename="userdata.img"    sparse="true"/>
+        <partition label="navi_buffer"      size_in_kb="524288"     type="3c727a0a-de2d-48ae-8e3d-49459228e8a4"     bootable="false"    readonly="false"     filename=""                sparse="true"/>
+        <partition label="vr_tts"           size_in_kb="20971520"   type="004ecc9a-8fce-4012-8473-805dbad35801"     bootable="false"    readonly="false"     filename=""                sparse="true"/>
+        <partition label="ota_update"       size_in_kb="20971520"   type="E6F5765D-A5F5-43C7-946F-2AF1F523A3A8"     bootable="false"    readonly="false"     filename=""                sparse="false"/>
+        <partition label="qnx_log"          size_in_kb="2097152"    type="71cf1664-6b26-4c04-abdf-230a13ba114e"     bootable="false"    readonly="false"     filename=""                sparse="false"/>
+        <partition label="qnx_share"        size_in_kb="10485760"   type="f000d6ad-435a-4526-a28f-c5bc362c7058"     bootable="false"    readonly="false"     filename=""                sparse="false"/>
+
+    </physical_partition>
+
 </configuration>
+
